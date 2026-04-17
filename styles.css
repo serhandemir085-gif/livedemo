@@ -279,6 +279,30 @@ section {
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
+.detail-trigger,
+.detail-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 202, 87, 0.16);
+  border-radius: 16px;
+  background: rgba(255, 202, 87, 0.08);
+  color: var(--gold);
+  font-family: "Teko", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.detail-trigger:hover,
+.detail-close:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 202, 87, 0.14);
+}
+
 .pulse-button:focus-visible,
 .ghost-button:focus-visible,
 .nav-links a:focus-visible,
@@ -547,6 +571,32 @@ section {
   font-size: 3rem;
 }
 
+.mosaic-copy .detail-trigger {
+  margin-top: 14px;
+}
+
+.compatibility-band {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.compatibility-band span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 74px;
+  padding: 0 14px;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(13, 16, 26, 0.88), rgba(8, 10, 17, 0.8));
+  color: var(--cyan);
+  font-family: "Teko", sans-serif;
+  font-size: 1.35rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
 .money-stage,
 .final-banner {
   padding: 30px;
@@ -584,6 +634,153 @@ section {
   background:
     radial-gradient(circle at 50% 50%, rgba(255, 202, 87, 0.08), transparent 40%),
     linear-gradient(180deg, rgba(13, 16, 26, 0.9), rgba(8, 10, 17, 0.82));
+}
+
+.detail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.detail-overlay[hidden] {
+  display: none;
+}
+
+.detail-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 4, 8, 0.84);
+  backdrop-filter: blur(22px);
+}
+
+.detail-panel {
+  position: relative;
+  width: min(1260px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  padding: 28px;
+  border-radius: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at top right, rgba(255, 202, 87, 0.1), transparent 22%),
+    linear-gradient(180deg, rgba(12, 14, 23, 0.98), rgba(6, 9, 15, 0.96));
+  box-shadow: 0 36px 120px rgba(0, 0, 0, 0.58);
+}
+
+.detail-close {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin-left: auto;
+}
+
+.detail-hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+}
+
+.detail-title-wrap h2 {
+  margin: 16px 0 0;
+  font-family: "Teko", sans-serif;
+  font-size: clamp(3.6rem, 6vw, 5.5rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.detail-title-wrap p {
+  max-width: 70ch;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.detail-impact {
+  display: grid;
+  gap: 12px;
+  min-width: 280px;
+}
+
+.detail-impact article,
+.detail-card,
+.detail-gallery figure {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: var(--shadow);
+}
+
+.detail-impact article {
+  padding: 16px 18px;
+  border-radius: 22px;
+}
+
+.detail-impact span,
+.detail-card-label {
+  color: var(--gold);
+  font-family: "Teko", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+}
+
+.detail-impact strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.2rem;
+}
+
+.detail-gallery {
+  display: grid;
+  grid-template-columns: 1.3fr 0.85fr 0.85fr;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.detail-gallery figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  min-height: 250px;
+}
+
+.detail-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.detail-card {
+  padding: 20px;
+  border-radius: 24px;
+}
+
+.detail-card p,
+.detail-bullets {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.detail-card-wide {
+  grid-column: span 2;
+}
+
+.detail-bullets {
+  margin: 12px 0 0;
+  padding-left: 20px;
+}
+
+.body-locked {
+  overflow: hidden;
 }
 
 .reveal {
@@ -663,7 +860,11 @@ section {
   .card-wide,
   .money-stage,
   .power-grid,
-  .mosaic {
+  .mosaic,
+  .detail-hero,
+  .detail-gallery,
+  .detail-grid,
+  .compatibility-band {
     grid-template-columns: 1fr;
   }
 
@@ -681,7 +882,8 @@ section {
   .hero-actions,
   .hero-stats,
   .nav-links,
-  .money-wall {
+  .money-wall,
+  .detail-impact {
     display: grid;
     grid-template-columns: 1fr;
   }
@@ -717,6 +919,10 @@ section {
 
   .hero-frame-bottom {
     display: none;
+  }
+
+  .detail-panel {
+    padding: 18px;
   }
 }
 

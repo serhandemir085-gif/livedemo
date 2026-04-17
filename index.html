@@ -146,7 +146,7 @@
       </section>
 
       <section class="mosaic" id="scripts">
-        <article class="mosaic-card card-wide reveal tilt-zone">
+        <article class="mosaic-card card-wide reveal tilt-zone" data-game="takim">
           <div class="mosaic-media fit-top">
             <img src="./assets/futbol-takim.png" alt="Takimini sohbete yaz" />
           </div>
@@ -160,10 +160,11 @@
             <p>
               Tribun savasi acilir. Izleyici takim adini yazar, destek gonderir, cark dondurur ve tur tablosunun yonu bir anda degisir.
             </p>
+            <button class="detail-trigger" type="button" data-open-game="takim">Spotlight Ac</button>
           </div>
         </article>
 
-        <article class="mosaic-card reveal tilt-zone">
+        <article class="mosaic-card reveal tilt-zone" data-game="arena">
           <div class="mosaic-media fit-center dark-frame">
             <img src="./assets/mars-bagisli.png" alt="Futbol Arena 3D Pro" />
           </div>
@@ -176,10 +177,11 @@
             <p>
               TikTok, Twitch ve YouTube destegiyle bagislari puana ve takim baskisina ceviren arena ekrani.
             </p>
+            <button class="detail-trigger" type="button" data-open-game="arena">Spotlight Ac</button>
           </div>
         </article>
 
-        <article class="mosaic-card reveal tilt-zone">
+        <article class="mosaic-card reveal tilt-zone" data-game="flaggame">
           <div class="mosaic-media fit-flag">
             <img src="./assets/flaggame.png" alt="FlagGame" />
           </div>
@@ -192,10 +194,11 @@
             <p>
               Son kalan bayrak icin sohbeti tek bir hedefe kilitleyen, izleyen herkesin sonuc bekledigi hizli survival format.
             </p>
+            <button class="detail-trigger" type="button" data-open-game="flaggame">Spotlight Ac</button>
           </div>
         </article>
 
-        <article class="mosaic-card reveal tilt-zone">
+        <article class="mosaic-card reveal tilt-zone" data-game="quiz">
           <div class="mosaic-media fit-quiz">
             <img src="./assets/bilgiguncel-clean.png" alt="Bilgi Yarismasi" />
           </div>
@@ -209,10 +212,11 @@
             <p>
               Cevap yazanlar yarisa girer. Sure akar, skor siralanir, destek verenler ustte parlar.
             </p>
+            <button class="detail-trigger" type="button" data-open-game="quiz">Spotlight Ac</button>
           </div>
         </article>
 
-        <article class="mosaic-card reveal tilt-zone">
+        <article class="mosaic-card reveal tilt-zone" data-game="deathnote">
           <div class="mosaic-media fit-deathnote dark-frame">
             <img src="./assets/deathnote-clean.png" alt="Death Note Live" />
           </div>
@@ -225,10 +229,11 @@
             <p>
               Chat akisini oyunun icine yazan masaustu deneyimi. Mesaj geldikce gerilim daha da yogunlasir.
             </p>
+            <button class="detail-trigger" type="button" data-open-game="deathnote">Spotlight Ac</button>
           </div>
         </article>
 
-        <article class="mosaic-card reveal tilt-zone">
+        <article class="mosaic-card reveal tilt-zone" data-game="pickaxe">
           <div class="mosaic-media fit-pickaxe dark-frame">
             <img src="./assets/falling-pickaxe.png" alt="Falling Pickaxe" />
           </div>
@@ -242,8 +247,16 @@
             <p>
               Komutlarla pickaxe dusur, TNT yagdir, sahneyi boz, oyunun ritmini tek satirla degistir.
             </p>
+            <button class="detail-trigger" type="button" data-open-game="pickaxe">Spotlight Ac</button>
           </div>
         </article>
+      </section>
+
+      <section class="compatibility-band reveal">
+        <span>OBS Browser Source Hazir</span>
+        <span>Kolay Kurulum Akisi</span>
+        <span>Dusuk Esik, Yuksek Etki</span>
+        <span>Her Yorum Ekrana Dokunur</span>
       </section>
 
       <section class="money-stage reveal">
@@ -268,6 +281,51 @@
         </div>
       </section>
     </main>
+
+    <div class="detail-overlay" id="detailOverlay" hidden>
+      <div class="detail-backdrop" data-close-detail></div>
+      <section class="detail-panel" aria-modal="true" role="dialog" aria-labelledby="detailTitle">
+        <button class="detail-close" type="button" data-close-detail aria-label="Detay penceresini kapat">Kapat</button>
+        <div class="detail-hero">
+          <div class="detail-title-wrap">
+            <span class="section-chip" id="detailEyebrow">SCRIPT SPOTLIGHT</span>
+            <h2 id="detailTitle"></h2>
+            <p id="detailLead"></p>
+          </div>
+          <div class="detail-impact">
+            <article>
+              <span>Kurulum</span>
+              <strong id="detailSetup"></strong>
+            </article>
+            <article>
+              <span>Uyumluluk</span>
+              <strong id="detailCompat"></strong>
+            </article>
+            <article>
+              <span>Yayina Etki</span>
+              <strong id="detailImpact"></strong>
+            </article>
+          </div>
+        </div>
+
+        <div class="detail-gallery" id="detailGallery"></div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <span class="detail-card-label">Nasil Kurulur</span>
+            <p id="detailInstall"></p>
+          </article>
+          <article class="detail-card">
+            <span class="detail-card-label">Yayinda Neler Olur</span>
+            <p id="detailStream"></p>
+          </article>
+          <article class="detail-card detail-card-wide">
+            <span class="detail-card-label">Neden Bu Kadar Iyi Calisir</span>
+            <ul id="detailBullets" class="detail-bullets"></ul>
+          </article>
+        </div>
+      </section>
+    </div>
 
     <script src="./script.js"></script>
   </body>
