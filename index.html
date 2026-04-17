@@ -5,342 +5,269 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="YouTube canli yayinlar icin chat, Super Chat ve hediye akisini oyuna donusturen demolarin koyu temali tanitim sitesi."
+      content="YouTube yayinlarini sohbet, super chat ve hediye aksiyonlariyla oyuna donusturen canli yayin scriptleri."
     />
-    <title>LivePlay Demo Stack</title>
+    <meta name="theme-color" content="#05060a" />
+    <title>LivePlay</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="page-shell"></div>
-    <div class="page-noise"></div>
+    <a class="skip-link" href="#hero">Icerige gec</a>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="ambient ambient-c"></div>
+    <div class="scan-grid"></div>
+    <div class="grain"></div>
+    <div class="cursor-glow"></div>
 
     <header class="topbar">
       <a class="brand" href="#hero">
-        <span class="brand-mark">LP</span>
-        <span class="brand-copy">
-          <strong>LivePlay Demo Stack</strong>
-          <small>YouTube odakli oyun demolari</small>
-        </span>
+        <span class="brand-core">LP</span>
+        <span class="brand-wordmark">LIVEPLAY</span>
       </a>
 
       <nav class="nav-links">
-        <a href="#demo-grid">Demolar</a>
-        <a href="#impact">Kesfet Etkisi</a>
-        <a href="#monetization">Monetization</a>
-        <a href="#upload">GitHub</a>
+        <a href="#scripts">Scriptler</a>
+        <a href="#showcase">Sahne</a>
+        <a href="#power">Gucler</a>
       </nav>
     </header>
 
     <main>
       <section class="hero" id="hero">
         <div class="hero-copy reveal">
-          <div class="eyebrow">Canli yayin oyun vitrini</div>
-          <h1>Yayin sohbetini oyuna ceviren koyu temali bir demo websitesi</h1>
-          <p class="hero-lead">
-            Bu sayfa, klasordeki gercek projelerden uretilmis demo stack'i tek cati altinda sunuyor.
-            Oyunlar; yorum hizini artiran, izleyiciyi oyuna dahil eden ve YouTube kesfetine oynayan
-            canli yayin formatlari icin tasarlandi.
+          <span class="live-chip">
+            <span class="live-dot"></span>
+            YAYIN AKTIF
+          </span>
+
+          <h1>
+            SOHBET YAZ.
+            <span>EKRAN PATLASIN.</span>
+          </h1>
+
+          <p>
+            Super Chat, hediyeler, komutlar, cevaplar, takim secimleri ve wheel etkileri.
+            Izleyici ne yaparsa yayin onun etrafinda sekillenir.
           </p>
 
           <div class="hero-actions">
-            <a class="button button-primary" href="#demo-grid">Gercek demolari gor</a>
-            <a class="button button-secondary" href="#upload">GitHub'a hazir paket</a>
+            <a class="pulse-button" href="#showcase">Scriptleri Kesfet</a>
+            <a class="ghost-button" href="#power">Ekrandaki Etkiler</a>
           </div>
 
-          <div class="hero-metrics">
+          <div class="hero-stats">
             <article>
-              <strong>6</strong>
-              <span>farkli oyun/demo</span>
+              <strong>CHAT</strong>
+              <span>oyunu yonlendirir</span>
             </article>
             <article>
-              <strong>Gercek</strong>
-              <span>oyun goruntuleri</span>
+              <strong>SUPER CHAT</strong>
+              <span>gucleri tetikler</span>
             </article>
             <article>
-              <strong>Super Chat</strong>
-              <span>ve hediye odakli akis</span>
+              <strong>HEDIYELER</strong>
+              <span>sonucu degistirir</span>
             </article>
-          </div>
-
-          <div class="hero-note">
-            Sitedeki ana gorseller bu klasordeki gercek oyun ekranlari, runtime capture'lari ve oyunun
-            kendi assetlerinden uretilmistir.
           </div>
         </div>
 
-        <div class="hero-stage reveal delay-1">
-          <article class="floating-panel panel-large tilt-card">
-            <img src="./assets/flaggame.png" alt="FlagGame gercek oyun goruntusu" />
-            <div class="panel-meta">
+        <div class="hero-visual reveal delay-1">
+          <div class="hero-frame hero-frame-main floating-card drift-slow">
+            <img src="./assets/futbol-takim.png" alt="Takimini sohbete yaz ekran goruntusu" />
+            <div class="frame-label">
+              <span>TAKIMINI SOHBETE YAZ</span>
+              <strong>Wheel + Super Chat baskisi</strong>
+            </div>
+          </div>
+
+          <div class="hero-frame hero-frame-side floating-card drift-fast">
+            <img src="./assets/flaggame.png" alt="FlagGame ekran goruntusu" />
+            <div class="frame-label compact">
               <span>FLAGGAME</span>
-              <strong>Son bayrak ayakta kalir</strong>
             </div>
-          </article>
-
-          <article class="floating-panel panel-side tilt-card">
-            <img src="./assets/futbol-takim.png" alt="Takimini sohbete yaz oyunu ekran goruntusu" />
-            <div class="panel-meta">
-              <span>Canli takim savasi</span>
-              <strong>Superchat + sans carki</strong>
-            </div>
-          </article>
-
-          <article class="floating-panel panel-bottom tilt-card">
-            <img src="./assets/deathnote-window.png" alt="Death Note Live runtime pencere goruntusu" />
-            <div class="panel-meta">
-              <span>Desktop runtime</span>
-              <strong>Death Note Live</strong>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="signal-bar reveal">
-        <div>Yorum hizi</div>
-        <div>Takim secimi</div>
-        <div>OBS browser source</div>
-        <div>Super Chat skorlama</div>
-        <div>TikTok / YouTube / Twitch akisi</div>
-        <div>Hediye ile puanlama</div>
-      </section>
-
-      <section class="impact" id="impact">
-        <div class="section-heading reveal">
-          <div class="eyebrow">Neden ise yarar</div>
-          <h2>YouTube kesfetine oynayan canli yayin dongusu</h2>
-          <p>
-            Bu formatlar tek bir seyi hedefliyor: izleyicinin sadece izlemesini degil, yazmasini,
-            secim yapmasini, rekabeti tirmandirmasini ve para harcarken ekranda anlik etki gormesini.
-          </p>
-        </div>
-
-        <div class="impact-grid">
-          <article class="impact-card reveal">
-            <span class="card-kicker">Kesfet sinyali</span>
-            <h3>Yorum ve etkileşim ritmi yukselir</h3>
-            <p>
-              Takim secimi, cevap yazma, son hayatta kalan bayragi tahmin etme gibi akıslar yorum sayisini ve tekrar katilimi yukari ceker.
-            </p>
-          </article>
-
-          <article class="impact-card reveal delay-1">
-            <span class="card-kicker">Tutulma</span>
-            <h3>Izleyici ekranda sonucu bekler</h3>
-            <p>
-              Cark, puan barlari, anlik skor degisimi, zaman sayaci ve siralama ekranlari yayini pasif icerikten aktif rekabete cevirir.
-            </p>
-          </article>
-
-          <article class="impact-card reveal delay-2">
-            <span class="card-kicker">Monetization</span>
-            <h3>Superchat ve hediyeler gorunur guce donusur</h3>
-            <p>
-              Super Chat, TikTok gift veya diger destekler puan, booster, wheel sonucu ya da oyundaki fiziksel etki olarak ekrana yansir.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="monetization-banner reveal" id="monetization">
-        <div>
-          <span class="eyebrow">Para kazanma katmani</span>
-          <h2>Super Chat ve hediyeleri sadece gostermiyor, oyunun motoruna bagliyor</h2>
-        </div>
-        <div class="money-points">
-          <span>10 TL</span>
-          <span>+50</span>
-          <span>50 TL</span>
-          <span>+400</span>
-          <span>100 TL</span>
-          <span>+1000</span>
-        </div>
-      </section>
-
-      <section class="demo-grid" id="demo-grid">
-        <div class="section-heading reveal">
-          <div class="eyebrow">Gercek demo galerisi</div>
-          <h2>Klasordeki oyunlardan uretilmis vitrin</h2>
-          <p>
-            Her kartta bu klasordeki gercek oyundan alinmis runtime goruntu veya native oyun asseti yer alir.
-          </p>
-        </div>
-
-        <div class="demo-cards">
-          <article class="demo-card span-wide reveal">
-            <div class="demo-media vertical-fit">
-              <img src="./assets/futbol-takim.png" alt="Takimini sohbete yaz sayfasi" />
-            </div>
-            <div class="demo-copy">
-              <div class="chip-row">
-                <span class="chip">Next.js</span>
-                <span class="chip">Superchat</span>
-                <span class="chip">Sans carki</span>
-              </div>
-              <h3>Takimini Sohbete Yaz</h3>
-              <p>
-                Izleyici takim adini sohbete yazar, Super Chat ile puan carpani alir ve sans carkiyla turun kaderi degisir.
-                Tam olarak parasal destegi ekrandaki rekabete baglayan format.
-              </p>
-              <ul class="feature-list">
-                <li>Top 3 destekci paneli</li>
-                <li>Wheel / multiplier mantigi</li>
-                <li>YouTube chat tabanli takim rekabeti</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="demo-card reveal delay-1">
-            <div class="demo-media">
-              <img src="./assets/mars-bagisli.png" alt="Futbol Arena 3D Pro ekran goruntusu" />
-            </div>
-            <div class="demo-copy">
-              <div class="chip-row">
-                <span class="chip">Express</span>
-                <span class="chip">Gift akisi</span>
-              </div>
-              <h3>Futbol Arena 3D Pro</h3>
-              <p>
-                TikTok, Twitch ve YouTube destegini ayni yapida toplayan canli yaris overlay'i.
-                Hediyeler puan tablolarina ve takim savasina akiyor.
-              </p>
-            </div>
-          </article>
-
-          <article class="demo-card reveal delay-2">
-            <div class="demo-media">
-              <img src="./assets/flaggame.png" alt="FlagGame gercek oyun goruntusu" />
-            </div>
-            <div class="demo-copy">
-              <div class="chip-row">
-                <span class="chip">Next.js</span>
-                <span class="chip">Survival</span>
-              </div>
-              <h3>FlagGame</h3>
-              <p>
-                Izleyici en son hangi bayragin kalacagini tahmin eder. Tek bakista anlasilan, izleyeni merakta tutan ve tekrar yorum alabilen temiz bir format.
-              </p>
-            </div>
-          </article>
-
-          <article class="demo-card reveal">
-            <div class="demo-media quiz-fit">
-              <img src="./assets/bilgiguncel-theme.png" alt="Bilgi Yarismasi neon tema goruntusu" />
-            </div>
-            <div class="demo-copy">
-              <div class="chip-row">
-                <span class="chip">Quiz</span>
-                <span class="chip">Timer</span>
-                <span class="chip">Leaderboard</span>
-              </div>
-              <h3>Bilgi Yarismasi</h3>
-              <p>
-                Zaman sayaci, skor tablosu ve cevap akisi ile yorum tabanli quiz kurgusu.
-                Superchat top 3 vurgusu sayesinde monetization sahneden cikmiyor.
-              </p>
-            </div>
-          </article>
-
-          <article class="demo-card reveal delay-1">
-            <div class="demo-media desktop-fit">
-              <img src="./assets/deathnote-window.png" alt="Death Note Live masaustu goruntusu" />
-            </div>
-            <div class="demo-copy">
-              <div class="chip-row">
-                <span class="chip">Electron</span>
-                <span class="chip">Desktop</span>
-                <span class="chip">Typing</span>
-              </div>
-              <h3>Death Note Live</h3>
-              <p>
-                Paketlenmis masaustu oyun. YouTube chat'ten gelen metinleri oyuna baglayan typing odakli deneyim sunuyor.
-              </p>
-            </div>
-          </article>
-
-          <article class="demo-card reveal delay-2">
-            <div class="demo-media falling-fit">
-              <img src="./assets/falling-pickaxe.png" alt="Falling Pickaxe showcase goruntusu" />
-            </div>
-            <div class="demo-copy">
-              <div class="chip-row">
-                <span class="chip">Python</span>
-                <span class="chip">Pygame</span>
-                <span class="chip">Komut tabanli etki</span>
-              </div>
-              <h3>Falling Pickaxe</h3>
-              <p>
-                Chat komutlariyla pickaxe, TNT ve ozel olaylari tetikleyen masaustu fizik tabanli kurgu.
-                Yayina meme, kaos ve hediye-karsiligi etkiler ekler.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="workflow reveal">
-        <div class="section-heading">
-          <div class="eyebrow">Canli yayin dongusu</div>
-          <h2>Izleyici aksiyonu aninda ekrana geri doner</h2>
-        </div>
-
-        <div class="workflow-steps">
-          <article>
-            <span>01</span>
-            <h3>Yazar</h3>
-            <p>Takim adini, cevabi, tahmini veya komutu sohbete gonderir.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Destekler</h3>
-            <p>Super Chat veya hediye ile normal yoruma gore daha guclu etki olusturur.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Gorur</h3>
-            <p>Puan, wheel, leaderboard, patlama veya yeni tur sonucunu ekranda anlik izler.</p>
-          </article>
-          <article>
-            <span>04</span>
-            <h3>Tekrar katilir</h3>
-            <p>Bu dongu yorum hizini ve yayinda kalma motivasyonunu besler.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="upload" id="upload">
-        <div class="section-heading reveal">
-          <div class="eyebrow">GitHub'a yukleme</div>
-          <h2>Static, temiz ve direkt repo'ya atilabilir paket</h2>
-        </div>
-
-        <div class="upload-card reveal delay-1">
-          <div>
-            <h3>Paket icerigi</h3>
-            <p>
-              Bu landing page build gerektirmeden calisir. `index.html`, `styles.css`, `script.js` ve `assets/` klasorunu bir GitHub reposuna koyman yeterli.
-            </p>
           </div>
 
-          <div class="upload-meta">
-            <span>Dark mode</span>
-            <span>Mobil uyumlu</span>
-            <span>Gercek oyun gorselleri</span>
-            <span>GitHub friendly</span>
+          <div class="hero-frame hero-frame-bottom floating-card drift-mid">
+            <img src="./assets/deathnote-clean.png" alt="Death Note Live ekran goruntusu" />
+            <div class="frame-label compact">
+              <span>DEATH NOTE LIVE</span>
+            </div>
           </div>
+        </div>
+      </section>
+
+      <section class="ticker-wrap reveal">
+        <div class="ticker-track">
+          <span>SUPER CHAT BOOST</span>
+          <span>HEDIYE SALDIRISI</span>
+          <span>TAKIM SAVASI</span>
+          <span>WHEEL SONUCU</span>
+          <span>QUIZ CEVABI</span>
+          <span>SOHBET KOMUTU</span>
+          <span>RUNTIME PATLAMA</span>
+          <span>TOP 3 DESTEKCI</span>
+          <span>SUPER CHAT BOOST</span>
+          <span>HEDIYE SALDIRISI</span>
+          <span>TAKIM SAVASI</span>
+          <span>WHEEL SONUCU</span>
+        </div>
+      </section>
+
+      <section class="power-grid" id="power">
+        <article class="power-card reveal">
+          <span class="power-index">01</span>
+          <h2>YORUM YAZAN SADECE YAZMAZ</h2>
+          <p>Her yorum, her cevap, her takim secimi oyuna bir hamle olarak geri doner.</p>
+        </article>
+
+        <article class="power-card reveal delay-1">
+          <span class="power-index">02</span>
+          <h2>SUPER CHAT EKRANDA AGIRLIK KOYAR</h2>
+          <p>Puan, cark, liderlik, booster ve karar anlari destek geldigi anda yone kirilir.</p>
+        </article>
+
+        <article class="power-card reveal delay-2">
+          <span class="power-index">03</span>
+          <h2>HEDIYE GELIRSE SAHNE DEGISIR</h2>
+          <p>Patlama, hiz, komut, ekstra guc, yeni tur veya rakibi ezen anlik etki devreye girer.</p>
+        </article>
+      </section>
+
+      <section class="showcase-head reveal" id="showcase">
+        <span class="section-chip">CANLI YAYIN SCRIPT SAHNESI</span>
+        <h2>EKRANA BAK VE HANGI FORMATIN YAYINA EN COK YAKISTIGINI SEC</h2>
+      </section>
+
+      <section class="mosaic" id="scripts">
+        <article class="mosaic-card card-wide reveal tilt-zone">
+          <div class="mosaic-media fit-top">
+            <img src="./assets/futbol-takim.png" alt="Takimini sohbete yaz" />
+          </div>
+          <div class="mosaic-copy">
+            <div class="tag-row">
+              <span>Takim secimi</span>
+              <span>Super Chat</span>
+              <span>Sans carki</span>
+            </div>
+            <h3>TAKIMINI SOHBETE YAZ</h3>
+            <p>
+              Tribun savasi acilir. Izleyici takim adini yazar, destek gonderir, cark dondurur ve tur tablosunun yonu bir anda degisir.
+            </p>
+          </div>
+        </article>
+
+        <article class="mosaic-card reveal tilt-zone">
+          <div class="mosaic-media fit-center dark-frame">
+            <img src="./assets/mars-bagisli.png" alt="Futbol Arena 3D Pro" />
+          </div>
+          <div class="mosaic-copy">
+            <div class="tag-row">
+              <span>Gift akisi</span>
+              <span>Canli arena</span>
+            </div>
+            <h3>FUTBOL ARENA 3D PRO</h3>
+            <p>
+              TikTok, Twitch ve YouTube destegiyle bagislari puana ve takim baskisina ceviren arena ekrani.
+            </p>
+          </div>
+        </article>
+
+        <article class="mosaic-card reveal tilt-zone">
+          <div class="mosaic-media fit-flag">
+            <img src="./assets/flaggame.png" alt="FlagGame" />
+          </div>
+          <div class="mosaic-copy">
+            <div class="tag-row">
+              <span>Tahmin</span>
+              <span>Survival</span>
+            </div>
+            <h3>FLAGGAME</h3>
+            <p>
+              Son kalan bayrak icin sohbeti tek bir hedefe kilitleyen, izleyen herkesin sonuc bekledigi hizli survival format.
+            </p>
+          </div>
+        </article>
+
+        <article class="mosaic-card reveal tilt-zone">
+          <div class="mosaic-media fit-quiz">
+            <img src="./assets/bilgiguncel-clean.png" alt="Bilgi Yarismasi" />
+          </div>
+          <div class="mosaic-copy">
+            <div class="tag-row">
+              <span>Quiz</span>
+              <span>Zaman</span>
+              <span>Top 3</span>
+            </div>
+            <h3>BILGI YARISMASI</h3>
+            <p>
+              Cevap yazanlar yarisa girer. Sure akar, skor siralanir, destek verenler ustte parlar.
+            </p>
+          </div>
+        </article>
+
+        <article class="mosaic-card reveal tilt-zone">
+          <div class="mosaic-media fit-deathnote dark-frame">
+            <img src="./assets/deathnote-clean.png" alt="Death Note Live" />
+          </div>
+          <div class="mosaic-copy">
+            <div class="tag-row">
+              <span>Typing</span>
+              <span>Desktop</span>
+            </div>
+            <h3>DEATH NOTE LIVE</h3>
+            <p>
+              Chat akisini oyunun icine yazan masaustu deneyimi. Mesaj geldikce gerilim daha da yogunlasir.
+            </p>
+          </div>
+        </article>
+
+        <article class="mosaic-card reveal tilt-zone">
+          <div class="mosaic-media fit-pickaxe dark-frame">
+            <img src="./assets/falling-pickaxe.png" alt="Falling Pickaxe" />
+          </div>
+          <div class="mosaic-copy">
+            <div class="tag-row">
+              <span>Pygame</span>
+              <span>Komut</span>
+              <span>Kaos</span>
+            </div>
+            <h3>FALLING PICKAXE</h3>
+            <p>
+              Komutlarla pickaxe dusur, TNT yagdir, sahneyi boz, oyunun ritmini tek satirla degistir.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section class="money-stage reveal">
+        <div class="money-copy">
+          <span class="section-chip">MONETIZATION MOMENT</span>
+          <h2>DESTEK GELINCE SADECE UYARI DEGIL, OYUNUN GUC DENGESI DE DEGISIR</h2>
+        </div>
+        <div class="money-wall">
+          <span>10 TL +50</span>
+          <span>50 TL +400</span>
+          <span>100 TL +1000</span>
+          <span>GIFT = ETKI</span>
+          <span>CHAT = HAMLE</span>
+          <span>WHEEL = KRITIK AN</span>
+        </div>
+      </section>
+
+      <section class="final-banner reveal">
+        <div class="final-copy">
+          <span class="section-chip">SAHNE HAZIR</span>
+          <h2>YAYIN ACILDIGINDA SOHBET SADECE IZLEMEZ. OYNAR.</h2>
         </div>
       </section>
     </main>
-
-    <footer class="footer">
-      <p>LivePlay Demo Stack</p>
-      <p>YouTube odakli canli yayin oyun vitrini</p>
-    </footer>
 
     <script src="./script.js"></script>
   </body>
