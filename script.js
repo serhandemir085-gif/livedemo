@@ -1,13 +1,10 @@
 const games = window.LIVEPLAY_GAMES || []
 
-const cursorGlow = document.querySelector(".cursor-glow")
-const gameGrid = document.querySelector(".game-grid")
-const featuredMonitor = document.querySelector("#featuredMonitor")
-const heroMiniRail = document.querySelector("#heroMiniRail")
-const growthMatrix = document.querySelector("#growthMatrix")
-const creatorVoice = document.querySelector("#creatorVoice")
+const spotlightFrame = document.querySelector("#spotlightFrame")
+const spotlightSwitcher = document.querySelector("#spotlightSwitcher")
+const catalogGrid = document.querySelector(".catalog-grid")
 
-let featuredIndex = 0
+let selectedGameIndex = 0
 
 function escapeHtml(value) {
   return String(value)
@@ -17,49 +14,33 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;")
 }
 
-function getGamePageHref(game) {
+function gameHref(game) {
   return `./oyunlar/${encodeURIComponent(game.id)}.html`
 }
 
-function renderFeatured(game) {
-  if (!featuredMonitor) return
-
-  const signalMarkup = (game.growthMap || [])
-    .slice(0, 2)
-    .map(
-      (item) => `
-        <article class="pulse-chip">
-          <span>${escapeHtml(item.label)}</span>
-          <strong>${escapeHtml(item.value)}</strong>
-        </article>
-      `,
-    )
-    .join("")
+function renderSpotlight(game) {
+  if (!spotlightFrame) return
 
   document.documentElement.style.setProperty("--page-accent", game.accent)
   document.documentElement.style.setProperty("--page-glow", game.glow)
 
-  featuredMonitor.innerHTML = `
-    <article class="feature-console" style="--accent:${game.accent}; --glow:${game.glow};">
-      <div class="media-shell media-shell-hero media-fit-${game.homeFit}" style="--preview:url('${game.homeImage}')">
-        <img src="${game.homeImage}" alt="${escapeHtml(game.title)} ekran görüntüsü" />
-        <div class="media-badge">
+  spotlightFrame.innerHTML = `
+    <article class="spotlight-card" style="--accent:${game.accent}; --glow:${game.glow};">
+      <div class="spotlight-media media-shell media-fit-${game.homeFit}" style="--preview:url('${game.homeImage}')">
+        <img src="${game.homeImage}" alt="${escapeHtml(game.title)} sahnesi" />
+      </div>
+
+      <div class="spotlight-copy">
+        <div class="spotlight-meta">
           <span>${escapeHtml(game.eyebrow)}</span>
           <strong>${escapeHtml(game.title)}</strong>
         </div>
-      </div>
 
-      <div class="feature-console-copy">
-        <p class="feature-label">${escapeHtml(game.heroLabel)}</p>
-        <h2>${escapeHtml(game.title)}</h2>
         <p>${escapeHtml(game.teaser)}</p>
 
-        <div class="feature-pulse-row">
-          ${signalMarkup}
-        </div>
-
-        <div class="metric-row">
+        <div class="spotlight-metrics">
           ${game.metrics
+            .slice(0, 3)
             .map(
               (metric) => `
                 <article>
@@ -71,213 +52,83 @@ function renderFeatured(game) {
             .join("")}
         </div>
 
-        <div class="chip-row">
-          ${game.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
+        <div class="spotlight-actions">
+          <a class="button button-primary" href="${gameHref(game)}">Ürün sayfası</a>
+          <a class="button button-secondary" href="${escapeHtml(game.buyUrl || window.LIVEPLAY_PROFILE_URL || "#")}" target="_blank" rel="noreferrer">
+            ${escapeHtml(game.buyLabel || "İlan")}
+          </a>
         </div>
-
-        <a class="button button-primary" href="${getGamePageHref(game)}">
-          Kendi sekmesini aç
-        </a>
       </div>
     </article>
   `
 }
 
-function renderMiniRail() {
-  if (!heroMiniRail) return
+function renderSwitcher() {
+  if (!spotlightSwitcher) return
 
-  heroMiniRail.innerHTML = games
+  spotlightSwitcher.innerHTML = games
     .map(
       (game, index) => `
         <button
-          class="mini-card ${index === featuredIndex ? "is-active" : ""}"
+          class="switch-chip ${index === selectedGameIndex ? "is-active" : ""}"
           type="button"
-          data-featured-index="${index}"
+          data-switch-index="${index}"
           style="--accent:${game.accent}; --glow:${game.glow};"
-          aria-label="${escapeHtml(game.title)} oyununu öne çıkar"
         >
-          <div class="media-shell media-shell-mini media-fit-${game.homeFit}" style="--preview:url('${game.homeImage}')">
-            <img src="${game.homeImage}" alt="" />
-          </div>
-          <div class="mini-card-copy">
-            <span>${escapeHtml(game.eyebrow)}</span>
-            <strong>${escapeHtml(game.title)}</strong>
-          </div>
+          <span>${escapeHtml(game.eyebrow)}</span>
+          <strong>${escapeHtml(game.title)}</strong>
         </button>
       `,
     )
     .join("")
 }
 
-function renderGrowthMatrix(game) {
-  if (!growthMatrix) return
+function renderCatalog() {
+  if (!catalogGrid) return
 
-  const growthMap = game.growthMap || []
-  const audienceFlow = game.audienceFlow || []
+  catalogGrid.innerHTML = games
+    .map(
+      (game) => `
+        <article class="catalog-card reveal" style="--accent:${game.accent}; --glow:${game.glow};">
+          <a class="catalog-media media-shell media-fit-${game.homeFit}" href="${gameHref(game)}" style="--preview:url('${game.homeImage}')">
+            <img src="${game.homeImage}" alt="${escapeHtml(game.title)} görseli" />
+          </a>
 
-  growthMatrix.innerHTML = `
-    <article class="growth-card growth-card--intro" style="--accent:${game.accent}; --glow:${game.glow};">
-      <span>Keşfet vaadi</span>
-      <strong>${escapeHtml(game.growthLead || game.heroLabel)}</strong>
-      <p>${escapeHtml(audienceFlow[0] || game.teaser)}</p>
-    </article>
+          <div class="catalog-copy">
+            <div class="catalog-topline">
+              <span>${escapeHtml(game.eyebrow)}</span>
+              <strong>${escapeHtml(game.title)}</strong>
+            </div>
 
-    ${growthMap
-      .map(
-        (item) => `
-          <article class="growth-card" style="--accent:${game.accent}; --glow:${game.glow};">
-            <span>${escapeHtml(item.label)}</span>
-            <strong>${escapeHtml(item.value)}</strong>
-          </article>
-        `,
-      )
-      .join("")}
-  `
+            <p>${escapeHtml(game.description)}</p>
+
+            <div class="catalog-tags">
+              ${game.tags.slice(0, 3).map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
+            </div>
+
+            <div class="catalog-footer">
+              <a class="text-link" href="${gameHref(game)}">Detay sayfası</a>
+              <a class="text-link" href="${escapeHtml(game.buyUrl || window.LIVEPLAY_PROFILE_URL || "#")}" target="_blank" rel="noreferrer">
+                ${escapeHtml(game.buyLabel || "İlan")}
+              </a>
+            </div>
+          </div>
+        </article>
+      `,
+    )
+    .join("")
 }
 
-function renderCreatorVoice(game) {
-  if (!creatorVoice) return
-
-  const creatorLines = game.creatorLines || []
-  const audienceFlow = game.audienceFlow || []
-
-  creatorVoice.innerHTML = `
-    <div class="voice-layout">
-      <article class="voice-panel" style="--accent:${game.accent}; --glow:${game.glow};">
-        <span class="panel-label">Sunucunun açılış cümleleri</span>
-        <h2>${escapeHtml(game.title)} ile sohbeti ilk saniyede oyuna sok</h2>
-        <ol class="quote-list">
-          ${creatorLines.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}
-        </ol>
-      </article>
-
-      <article class="voice-panel voice-panel-secondary" style="--accent:${game.accent}; --glow:${game.glow};">
-        <span class="panel-label">İzleyiciyi neden tutar?</span>
-        <p class="voice-lead">${escapeHtml(game.growthLead || game.teaser)}</p>
-        <ul class="pulse-list">
-          ${audienceFlow.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
-        </ul>
-      </article>
-    </div>
-  `
-}
-
-function createCard(game) {
-  const hookValue = game.growthMap?.[0]?.value || game.heroLabel
-
-  return `
-    <a
-      class="game-card game-card--${game.size} tilt-zone reveal"
-      href="${getGamePageHref(game)}"
-      style="--accent:${game.accent}; --glow:${game.glow};"
-    >
-      <div class="card-media-wrap">
-        <div class="media-shell media-shell-card media-fit-${game.homeFit}" style="--preview:url('${game.homeImage}')">
-          <img src="${game.homeImage}" alt="${escapeHtml(game.title)} oyunundan sahne" />
-        </div>
-      </div>
-
-      <div class="card-copy">
-        <div class="chip-row">
-          ${game.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
-        </div>
-
-        <h3>${escapeHtml(game.title)}</h3>
-        <p>${escapeHtml(game.description)}</p>
-
-        <div class="card-hook">
-          <span>Keşfet kancası</span>
-          <strong>${escapeHtml(hookValue)}</strong>
-        </div>
-
-        <div class="card-metrics">
-          ${game.metrics
-            .map(
-              (metric) => `
-                <article>
-                  <span>${escapeHtml(metric.label)}</span>
-                  <strong>${escapeHtml(metric.value)}</strong>
-                </article>
-              `,
-            )
-            .join("")}
-        </div>
-
-        <div class="card-footer">
-          <span>${escapeHtml(game.compatibility)}</span>
-          <strong>Ayrı oyun sekmesi</strong>
-        </div>
-      </div>
-    </a>
-  `
-}
-
-function renderGameGrid() {
-  if (!gameGrid) return
-  gameGrid.innerHTML = games.map((game) => createCard(game)).join("")
-}
-
-function setFeatured(index) {
-  featuredIndex = index
-  const featuredGame = games[featuredIndex]
-  renderFeatured(featuredGame)
-  renderMiniRail()
-  renderGrowthMatrix(featuredGame)
-  renderCreatorVoice(featuredGame)
-  bindTiltZones()
-  bindMiniRail()
-}
-
-function bindMiniRail() {
-  document.querySelectorAll("[data-featured-index]").forEach((button) => {
+function bindSwitcher() {
+  document.querySelectorAll("[data-switch-index]").forEach((button) => {
     button.addEventListener("click", () => {
-      const nextIndex = Number(button.getAttribute("data-featured-index"))
-      if (!Number.isNaN(nextIndex)) {
-        setFeatured(nextIndex)
-      }
+      const nextIndex = Number(button.getAttribute("data-switch-index"))
+      if (Number.isNaN(nextIndex)) return
+      selectedGameIndex = nextIndex
+      renderSpotlight(games[selectedGameIndex])
+      renderSwitcher()
+      bindSwitcher()
     })
-  })
-}
-
-function bootReveals() {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible")
-        }
-      })
-    },
-    { threshold: 0.16 },
-  )
-
-  document.querySelectorAll(".reveal").forEach((element) => observer.observe(element))
-
-  window.setTimeout(() => {
-    document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"))
-  }, 180)
-}
-
-function bindTiltZones() {
-  document.querySelectorAll(".tilt-zone").forEach((card) => {
-    card.addEventListener("mousemove", (event) => {
-      const rect = card.getBoundingClientRect()
-      const x = (event.clientX - rect.left) / rect.width - 0.5
-      const y = (event.clientY - rect.top) / rect.height - 0.5
-
-      card.style.transform = `perspective(1400px) rotateX(${y * -5}deg) rotateY(${x * 7}deg) translateY(-4px)`
-    })
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = ""
-    })
-  })
-}
-
-function bindCursorGlow() {
-  if (!cursorGlow) return
-  window.addEventListener("mousemove", (event) => {
-    cursorGlow.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`
   })
 }
 
@@ -294,17 +145,34 @@ function bindPageTransitions() {
       document.body.classList.add("page-leaving")
       window.setTimeout(() => {
         window.location.href = href
-      }, 220)
+      }, 200)
     })
   })
 }
 
+function bootReveals() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("is-visible")
+      })
+    },
+    { threshold: 0.12 },
+  )
+
+  document.querySelectorAll(".reveal").forEach((element) => observer.observe(element))
+  window.setTimeout(() => {
+    document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"))
+  }, 120)
+}
+
 function init() {
   if (!games.length) return
-  renderGameGrid()
-  setFeatured(0)
+  renderSpotlight(games[selectedGameIndex])
+  renderSwitcher()
+  renderCatalog()
+  bindSwitcher()
   bootReveals()
-  bindCursorGlow()
   bindPageTransitions()
 }
 

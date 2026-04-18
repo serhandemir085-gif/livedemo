@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="YouTube keşfetini hedefleyen, yorumu aksiyona ve bağışı oyuna çeviren LivePlay yayın oyunu vitrini."
+      content="LivePlay, YouTube canlı yayınları için teknoloji odaklı oyun sistemlerini çok sayfalı ürün vitrini olarak sunar."
     />
-    <meta name="theme-color" content="#070911" />
-    <title>LivePlay | Keşfeti Açan Yayın Oyunları</title>
+    <meta name="theme-color" content="#09111f" />
+    <title>LivePlay | Yayın Sistemleri Kataloğu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oxanium:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
@@ -21,128 +21,133 @@
   </head>
   <body class="page-home">
     <a class="skip-link" href="#anaIcerik">İçeriğe geç</a>
-    <div class="bg-layer bg-layer-a"></div>
-    <div class="bg-layer bg-layer-b"></div>
-    <div class="bg-grid"></div>
-    <div class="bg-noise"></div>
-    <div class="cursor-glow"></div>
+    <div class="app-shell">
+      <div class="tech-orb tech-orb-a"></div>
+      <div class="tech-orb tech-orb-b"></div>
+      <div class="scan-grid"></div>
 
-    <header class="site-header">
-      <a class="brand" href="./index.html">
-        <span class="brand-mark">LP</span>
-        <span class="brand-copy">
-          <strong>LivePlay</strong>
-          <small>Yayın içi oyun sistemleri</small>
-        </span>
-      </a>
-
-      <nav class="site-nav" aria-label="Ana menü">
-        <a href="#ozet">Özet</a>
-        <a href="#oyunlar">Oyunlar</a>
-        <a href="https://www.itemsatis.com/p/CodeHub" target="_blank" rel="noreferrer">CodeHub Profil</a>
-      </nav>
-
-      <a class="nav-cta" href="https://www.itemsatis.com/p/CodeHub" target="_blank" rel="noreferrer">İtemsatış Profil</a>
-    </header>
-
-    <main id="anaIcerik">
-      <section class="hero-board">
-        <div class="hero-copy reveal">
-          <span class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            YOUTUBE KEŞFET MOTORU
+      <header class="site-header">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">LP</span>
+          <span class="brand-copy">
+            <strong>LivePlay</strong>
+            <small>Canlı yayın sistem kataloğu</small>
           </span>
+        </a>
 
-          <h1>
-            YAYININI
-            <span>KEŞFET MAKİNESİNE</span>
-            ÇEVİR.
-          </h1>
+        <nav class="site-nav" aria-label="Ana menü">
+          <a href="#urunler">Ürünler</a>
+          <a href="#neden">Neden çalışır?</a>
+          <a href="https://www.itemsatis.com/p/CodeHub" target="_blank" rel="noreferrer">CodeHub profil</a>
+        </nav>
 
-          <p class="hero-description">
-            Buradaki oyunlar sadece güzel görünen overlay'ler değil. İlk üç
-            saniyede ne olduğunu anlatan, yorumu taraf olmaya zorlayan,
-            bağışı görünür şova çeviren ve finalinde klip çıkaran yayın
-            formatları. Her kart, kitle toplayacak bir içerik fikri gibi
-            düşünülerek kurgulandı.
+        <a class="nav-cta" href="https://www.itemsatis.com/p/CodeHub" target="_blank" rel="noreferrer">
+          İtemsatış profiline git
+        </a>
+      </header>
+
+      <main id="anaIcerik">
+        <section class="home-hero">
+          <div class="hero-copy reveal">
+            <span class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              YAYIN TEKNOLOJİSİ
+            </span>
+
+            <h1>
+              CANLI YAYIN
+              <span>SİSTEMLERİNİ</span>
+              SATIŞA HAZIR GÖSTER.
+            </h1>
+
+            <p class="hero-description">
+              LivePlay; YouTube canlı yayınında yorum, Super Chat, skor, tahmin
+              ve komut akışını ayrı ürünler halinde sunar. Ana sayfa kısa bir
+              katalog gibi davranır, her oyunun kendi sayfası ise detaylı ürün
+              ve satın alma deneyimini taşır.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#urunler">Ürünleri aç</a>
+              <a class="button button-secondary" href="https://www.itemsatis.com/p/CodeHub" target="_blank" rel="noreferrer">
+                CodeHub profilini incele
+              </a>
+            </div>
+
+            <div class="signal-row">
+              <article>
+                <span>Sistem tipi</span>
+                <strong>Çok sayfalı ürün vitrini</strong>
+              </article>
+              <article>
+                <span>Odak</span>
+                <strong>Keşfet + chat + monetization</strong>
+              </article>
+              <article>
+                <span>Kurulum</span>
+                <strong>OBS / browser source uyumlu</strong>
+              </article>
+            </div>
+          </div>
+
+          <div class="hero-spotlight reveal delay-1">
+            <div class="spotlight-frame" id="spotlightFrame"></div>
+            <div class="spotlight-switcher" id="spotlightSwitcher"></div>
+          </div>
+        </section>
+
+        <section class="brief-grid" id="neden">
+          <article class="brief-card reveal">
+            <span class="brief-index">01</span>
+            <h2>İlk saniyede anlaşılır</h2>
+            <p>Yeni gelen izleyici ne yapacağını beklemeden anlar ve direkt oyuna girer.</p>
+          </article>
+
+          <article class="brief-card reveal delay-1">
+            <span class="brief-index">02</span>
+            <h2>Geliri görünür kılar</h2>
+            <p>Super Chat, skor ve sonuç akışı bağışı doğrudan sahnenin parçasına çevirir.</p>
+          </article>
+
+          <article class="brief-card reveal delay-2">
+            <span class="brief-index">03</span>
+            <h2>Her ürün ayrı sayfada</h2>
+            <p>Ana sayfa kısa kalır; teknik detay, görseller ve satın alma alanı ürün sayfasında açılır.</p>
+          </article>
+        </section>
+
+        <section class="catalog-head reveal">
+          <div>
+            <span class="eyebrow">ÜRÜN KATALOĞU</span>
+            <h2>Her kart ayrı bir canlı yayın sistemi</h2>
+          </div>
+          <p>
+            Burada sadece öz bilgi, temel ekran ve yönlendirme var. Ayrıntılı
+            ürün anlatımı, paket hissi ve satın alma akışı oyunların kendi
+            sayfalarında.
           </p>
+        </section>
 
-          <div class="hero-actions">
-            <a class="button button-primary" href="#oyunlar">Oyunları incele</a>
-            <a class="button button-secondary" href="https://www.itemsatis.com/p/CodeHub" target="_blank" rel="noreferrer">CodeHub profiline git</a>
+        <section class="catalog-grid" id="urunler" aria-label="Ürün listesi"></section>
+
+        <section class="profile-callout reveal">
+          <div>
+            <span class="eyebrow">CODEHUB</span>
+            <h2>Tüm ilanları doğrudan İtemsatış profilinden aç</h2>
+            <p>
+              Buradaki ürünler vitrindir. Güncel ilanlar, fiyatlar ve satış
+              detayları için doğrudan CodeHub profiline geç.
+            </p>
           </div>
+          <a class="button button-primary" href="https://www.itemsatis.com/p/CodeHub" target="_blank" rel="noreferrer">
+            CodeHub profili
+          </a>
+        </section>
+      </main>
 
-          <div class="hero-stat-strip">
-            <article>
-              <strong>3 sn</strong>
-              <span>içinde anlaşılır kanca</span>
-            </article>
-            <article>
-              <strong>Chat</strong>
-              <span>yorumdan aksiyona geçiş</span>
-            </article>
-            <article>
-              <strong>Klip</strong>
-              <span>çıkaran final anı</span>
-            </article>
-          </div>
-
-          <div class="hero-bullets">
-            <span>İlk bakışta ne yapılacağı anlaşılır, izleyici beklemez.</span>
-            <span>Yorum, bağış ve skor aynı hikâyede birleşir.</span>
-            <span>Her oyun kitle toplamak için ayrı bir yayın fikri gibi davranır.</span>
-          </div>
-        </div>
-
-        <div class="hero-stage reveal delay-1" id="ozet">
-          <div class="featured-monitor" id="featuredMonitor"></div>
-          <div class="hero-rail" id="heroMiniRail"></div>
-        </div>
-      </section>
-
-      <section class="systems-grid compact-systems" id="kesfet">
-        <article class="system-card reveal">
-          <span class="system-index">01</span>
-          <h2>Keşfet kancası</h2>
-          <p>İlk ekranda ne yapılacağı anlaşılır ve izleyici saniyesinde karar vermeye başlar.</p>
-        </article>
-
-        <article class="system-card reveal delay-1">
-          <span class="system-index">02</span>
-          <h2>Gelir motoru</h2>
-          <p>Super Chat, skor, çark ve chat aynı yayın ekonomisinde birleşir.</p>
-        </article>
-
-        <article class="system-card reveal delay-2">
-          <span class="system-index">03</span>
-          <h2>Ürün sayfaları</h2>
-          <p>Ana sayfa kısa kalır; tam detaylar ve satın alma alanı oyunların kendi sekmesindedir.</p>
-        </article>
-      </section>
-
-      <section class="section-head reveal">
-        <span class="eyebrow">OYUN KÜTÜPHANESİ</span>
-        <h2>Yüzeysel vitrin burada, tam ürün deneyimi oyunun kendi sayfasında</h2>
-        <p>
-          Burada sadece özet, oyun ekranı ve temel satış fikri var. Her karta
-          tıkladığında ayrı ürün sayfasına geçersin; satın alma butonu, detaylı
-          galeri, keşfet mantığı ve diğer oyun önerileri oradadır.
-        </p>
-      </section>
-
-      <section class="game-grid" id="oyunlar" aria-label="Oyun listesi"></section>
-
-      <section class="cta-panel reveal">
-        <div>
-          <span class="eyebrow">CODEHUB</span>
-          <h2>Doğrudan İtemsatış profiline geç, tüm ilanları tek yerden gör.</h2>
-        </div>
-        <a class="button button-primary" href="https://www.itemsatis.com/p/CodeHub" target="_blank" rel="noreferrer">CodeHub profiline git</a>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>LivePlay demo vitrini. Tüm görseller yalnızca oyunu gösterecek şekilde temizlenmiştir.</p>
-    </footer>
+      <footer class="site-footer">
+        <p>LivePlay ürün vitrini. Görseller yalnızca oyun sahnesini gösterecek şekilde düzenlenmiştir.</p>
+      </footer>
+    </div>
   </body>
 </html>
