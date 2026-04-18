@@ -1,19 +1,21 @@
 :root {
-  --bg: #060c16;
-  --bg-soft: #0b1321;
-  --panel: rgba(10, 17, 30, 0.82);
-  --panel-strong: rgba(10, 17, 30, 0.96);
-  --line: rgba(145, 174, 255, 0.16);
-  --line-strong: rgba(145, 174, 255, 0.28);
-  --text: #eef4ff;
-  --muted: #93a2bf;
-  --page-accent: #45d8ff;
-  --page-glow: rgba(69, 216, 255, 0.18);
+  --bg: #040816;
+  --bg-2: #08101f;
+  --panel: rgba(9, 15, 28, 0.78);
+  --panel-strong: rgba(8, 13, 24, 0.94);
+  --line: rgba(121, 171, 255, 0.16);
+  --line-strong: rgba(121, 171, 255, 0.3);
+  --text: #eff5ff;
+  --muted: #8da1c4;
+  --page-accent: #51d2ff;
+  --page-glow: rgba(81, 210, 255, 0.24);
+  --amber: #ffb968;
   --shadow-lg: 0 22px 60px rgba(0, 0, 0, 0.34);
-  --shadow-xl: 0 32px 100px rgba(0, 0, 0, 0.42);
+  --shadow-xl: 0 38px 110px rgba(0, 0, 0, 0.45);
   --radius-xl: 30px;
   --radius-lg: 22px;
   --radius-md: 18px;
+  --radius-sm: 14px;
 }
 
 * {
@@ -21,8 +23,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
   color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -30,9 +32,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 12% 14%, color-mix(in srgb, var(--page-accent) 18%, transparent), transparent 24%),
-    radial-gradient(circle at 82% 8%, rgba(255, 169, 77, 0.14), transparent 20%),
-    linear-gradient(180deg, #050912 0%, #07101a 46%, #04070d 100%);
+    radial-gradient(circle at 12% 12%, color-mix(in srgb, var(--page-accent) 26%, transparent), transparent 24%),
+    radial-gradient(circle at 86% 10%, rgba(255, 185, 104, 0.14), transparent 18%),
+    linear-gradient(180deg, #040714 0%, #07101c 45%, #03050b 100%);
   color: var(--text);
   font-family: "Manrope", sans-serif;
   opacity: 1;
@@ -46,8 +48,12 @@ body {
 
 body.page-leaving {
   opacity: 0;
-  transform: translateY(12px);
-  filter: blur(6px);
+  transform: translateY(10px);
+  filter: blur(4px);
+}
+
+body.body-locked {
+  overflow: hidden;
 }
 
 img {
@@ -72,7 +78,7 @@ button {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--page-accent) 72%, white);
+  outline: 2px solid color-mix(in srgb, var(--page-accent) 80%, white);
   outline-offset: 4px;
 }
 
@@ -84,56 +90,57 @@ button:focus-visible {
   padding: 10px 14px;
   border-radius: 12px;
   background: #fff;
-  color: #08101c;
+  color: #050916;
   transform: translateY(-180%);
-  transition: transform 120ms ease;
+  transition: transform 140ms ease;
 }
 
 .skip-link:focus-visible {
   transform: translateY(0);
 }
 
-.app-shell {
+.page-shell {
   position: relative;
   width: min(1280px, calc(100vw - 40px));
   margin: 0 auto;
-  padding-bottom: 40px;
+  padding-bottom: 36px;
 }
 
-.tech-orb,
-.scan-grid {
+.ambient,
+.scanlines {
   position: fixed;
   pointer-events: none;
+  inset: auto;
   z-index: 0;
 }
 
-.tech-orb {
-  width: 420px;
-  height: 420px;
+.ambient {
+  width: 430px;
+  height: 430px;
   border-radius: 50%;
-  filter: blur(90px);
+  filter: blur(96px);
   opacity: 0.34;
 }
 
-.tech-orb-a {
-  top: -80px;
-  left: -80px;
-  background: color-mix(in srgb, var(--page-accent) 30%, transparent);
+.ambient-a {
+  top: -70px;
+  left: -90px;
+  background: color-mix(in srgb, var(--page-accent) 34%, transparent);
 }
 
-.tech-orb-b {
-  top: 80px;
-  right: -120px;
-  background: rgba(255, 169, 77, 0.18);
+.ambient-b {
+  top: 60px;
+  right: -130px;
+  background: rgba(255, 185, 104, 0.14);
 }
 
-.scan-grid {
+.scanlines {
   inset: 0;
   background-image:
-    linear-gradient(rgba(120, 151, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(120, 151, 255, 0.04) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.85), transparent 92%);
+    linear-gradient(rgba(122, 168, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122, 168, 255, 0.035) 1px, transparent 1px);
+  background-size: 74px 74px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.92), transparent 95%);
 }
 
 .site-header,
@@ -148,8 +155,8 @@ main,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  padding: 24px 0 18px;
+  gap: 20px;
+  padding: 22px 0 16px;
 }
 
 .brand {
@@ -159,13 +166,15 @@ main,
 }
 
 .brand-mark,
-.eyebrow,
+.section-kicker,
 .site-nav a,
 .nav-cta,
 .button,
-.brief-index,
-.panel-label,
-.feature-index {
+.proof-index,
+.card-label,
+.purchase-label,
+.deck-label,
+.eyebrow-chip {
   font-family: "Chakra Petch", sans-serif;
   letter-spacing: 0.06em;
 }
@@ -173,11 +182,11 @@ main,
 .brand-mark {
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
+  width: 50px;
+  height: 50px;
   border-radius: 16px;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--page-accent) 92%, white), #ff9456);
-  color: #07101a;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--page-accent) 92%, white), var(--amber));
+  color: #07101b;
   font-weight: 700;
   box-shadow: 0 0 28px color-mix(in srgb, var(--page-accent) 30%, transparent);
 }
@@ -210,283 +219,434 @@ main,
   min-height: 48px;
   padding: 0 18px;
   border-radius: 16px;
-  border: 1px solid color-mix(in srgb, var(--page-accent) 26%, rgba(255, 255, 255, 0.08));
+  border: 1px solid color-mix(in srgb, var(--page-accent) 24%, rgba(255, 255, 255, 0.08));
   transition:
-    transform 160ms ease,
-    box-shadow 160ms ease,
-    border-color 160ms ease,
-    background 160ms ease;
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
 }
 
 .nav-cta,
 .button-primary {
-  background: linear-gradient(135deg, color-mix(in srgb, var(--page-accent) 88%, white), #ff9758);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--page-accent) 82%, white), var(--amber));
   color: #07101a;
-  box-shadow: 0 16px 34px color-mix(in srgb, var(--page-accent) 24%, transparent);
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--page-accent) 24%, transparent);
 }
 
 .button-secondary {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.02);
   color: var(--text);
 }
 
 .nav-cta:hover,
-.button:hover,
-.catalog-card:hover,
-.related-card:hover,
-.visual-card:hover,
-.detail-tab:hover,
-.switch-chip:hover {
-  transform: translateY(-3px);
+.button:hover {
+  transform: translateY(-2px);
 }
 
-section {
-  margin-top: 30px;
-}
-
-.home-hero,
-.product-hero {
-  display: grid;
-  grid-template-columns: 0.94fr 1.06fr;
-  gap: 22px;
-  align-items: center;
-  min-height: min(820px, calc(100vh - 120px));
-}
-
-.eyebrow {
+.section-kicker {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  min-height: 36px;
-  padding: 0 14px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--page-accent) 34%, rgba(255, 255, 255, 0.08));
-  background: color-mix(in srgb, var(--page-accent) 10%, rgba(255, 255, 255, 0.02));
-  color: color-mix(in srgb, var(--page-accent) 88%, white);
-  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--page-accent) 74%, white);
+  font-size: 0.86rem;
 }
 
-.eyebrow-dot {
-  width: 8px;
-  height: 8px;
+.kicker-dot {
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: #ff6359;
-  box-shadow: 0 0 12px #ff6359;
+  background: currentColor;
+  box-shadow: 0 0 16px currentColor;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  gap: 26px;
+  padding: 28px 0 20px;
+}
+
+.hero-copy,
+.hero-stage,
+.proof-card,
+.system-card,
+.profile-panel,
+.product-hero,
+.tab-row,
+.info-card,
+.gallery-card,
+.module-card,
+.related-card,
+.missing-state {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+    var(--panel);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(18px);
+}
+
+.hero-copy {
+  border-radius: var(--radius-xl);
+  padding: 34px;
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero-copy h1,
 .catalog-head h2,
-.profile-callout h2,
-.product-copy h1,
 .section-head h2,
-.feature-card h3,
-.brief-card h2,
-.buy-card h2,
+.product-copy h1,
 .missing-state h1 {
-  margin: 0;
+  margin: 18px 0 0;
   font-family: "Chakra Petch", sans-serif;
+  font-size: clamp(3rem, 6.5vw, 5.2rem);
   line-height: 0.92;
-}
-
-.hero-copy h1 {
-  margin-top: 18px;
-  font-size: clamp(3.4rem, 6vw, 6.4rem);
-  max-width: 8ch;
+  letter-spacing: -0.04em;
 }
 
 .hero-copy h1 span {
   display: block;
-  color: color-mix(in srgb, var(--page-accent) 88%, white);
-  text-shadow: 0 0 24px color-mix(in srgb, var(--page-accent) 22%, transparent);
+  color: color-mix(in srgb, var(--page-accent) 78%, white);
+  text-shadow: 0 0 26px color-mix(in srgb, var(--page-accent) 24%, transparent);
 }
 
-.hero-description,
+.hero-text,
 .catalog-head p,
-.profile-callout p,
-.detail-description,
-.overview-card p,
-.feature-card p,
-.visual-copy span,
+.section-head p,
+.product-summary,
+.system-summary,
+.purchase-copy p,
+.info-card p,
 .missing-state p,
-.brief-card p,
-.spotlight-copy p {
+.profile-actions p {
   color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.78;
+  font-size: 1.02rem;
 }
 
-.hero-description {
-  max-width: 58ch;
-  margin-top: 18px;
-  font-size: 1rem;
+.hero-text {
+  width: min(100%, 600px);
+  margin: 22px 0 0;
 }
 
-.hero-actions,
-.product-actions,
-.spotlight-actions,
-.buy-actions {
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 22px;
+  margin-top: 24px;
 }
 
-.signal-row,
-.product-stats,
-.spotlight-metrics {
+.status-band {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 22px;
+  gap: 14px;
+  margin-top: 26px;
 }
 
-.signal-row article,
-.product-stats article,
-.spotlight-metrics article,
-.brief-card,
-.overview-card,
-.feature-card,
-.buy-card,
-.profile-callout,
-.missing-state {
+.status-band article,
+.deck-metrics article,
+.product-strip article {
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(10, 17, 30, 0.92), rgba(8, 13, 24, 0.9));
-  box-shadow: var(--shadow-lg);
-}
-
-.signal-row article,
-.product-stats article,
-.spotlight-metrics article {
+  border-radius: 18px;
   padding: 16px;
-  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.02);
 }
 
-.signal-row span,
-.product-stats span,
-.spotlight-metrics span,
-.catalog-topline span,
-.detail-tab span,
-.related-copy span {
+.status-band span,
+.deck-metrics span,
+.product-strip span {
   display: block;
+  margin-bottom: 6px;
   color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.hero-stage {
+  border-radius: var(--radius-xl);
+  padding: 20px;
+}
+
+.hero-stage-frame {
+  min-height: 100%;
+}
+
+.command-deck {
+  display: grid;
+  gap: 16px;
+  height: 100%;
+}
+
+.deck-head,
+.system-card-head,
+.related-copy,
+.gallery-copy,
+.purchase-copy,
+.profile-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.deck-label,
+.purchase-label,
+.card-label {
+  color: color-mix(in srgb, var(--page-accent) 72%, white);
   font-size: 0.82rem;
 }
 
-.signal-row strong,
-.product-stats strong,
-.spotlight-metrics strong,
-.catalog-topline strong,
-.detail-tab strong,
-.related-copy strong,
-.visual-copy strong {
-  display: block;
-  margin-top: 8px;
-}
-
-.hero-spotlight,
-.spotlight-frame {
-  display: grid;
-  gap: 14px;
-}
-
-.spotlight-card,
-.catalog-card,
-.related-card,
-.visual-card {
-  border: 1px solid color-mix(in srgb, var(--accent, var(--page-accent)) 18%, rgba(255, 255, 255, 0.08));
-  background:
-    radial-gradient(circle at top right, color-mix(in srgb, var(--accent, var(--page-accent)) 12%, transparent), transparent 28%),
-    linear-gradient(180deg, rgba(10, 17, 30, 0.94), rgba(8, 13, 24, 0.92));
-  box-shadow: var(--shadow-xl);
-}
-
-.spotlight-card {
-  display: grid;
-  grid-template-columns: minmax(320px, 0.92fr) 1.08fr;
-  gap: 18px;
-  padding: 18px;
-  border-radius: var(--radius-xl);
-}
-
-.spotlight-copy {
-  display: grid;
-  align-content: space-between;
-  gap: 14px;
-}
-
-.spotlight-meta span,
-.feature-label,
-.panel-label {
-  color: color-mix(in srgb, var(--page-accent) 84%, white);
-}
-
-.spotlight-meta strong {
-  font-size: clamp(2rem, 3vw, 3rem);
+.deck-head strong,
+.system-card-head strong,
+.catalog-head h2,
+.section-head h2,
+.purchase-copy strong,
+.related-copy strong {
   font-family: "Chakra Petch", sans-serif;
-  line-height: 1;
 }
 
-.spotlight-switcher {
+.deck-media {
+  min-height: 250px;
+}
+
+.deck-copy {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
-.switch-chip {
-  text-align: left;
-  padding: 14px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--line);
+.eyebrow-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--page-accent) 28%, rgba(255, 255, 255, 0.1));
+  color: color-mix(in srgb, var(--page-accent) 78%, white);
   background: rgba(255, 255, 255, 0.03);
-  color: var(--text);
 }
 
-.switch-chip.is-active {
-  border-color: color-mix(in srgb, var(--accent, var(--page-accent)) 38%, rgba(255, 255, 255, 0.1));
-  background: color-mix(in srgb, var(--accent, var(--page-accent)) 10%, rgba(255, 255, 255, 0.03));
-}
-
-.switch-chip span {
-  display: block;
+.deck-copy p {
+  margin: 0;
   color: var(--muted);
-  font-size: 0.78rem;
+  line-height: 1.7;
 }
 
-.switch-chip strong {
-  display: block;
-  margin-top: 8px;
-  line-height: 1.3;
+.deck-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.deck-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hero-switcher,
+.tab-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.switch-card,
+.mini-tab {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease,
+    background 160ms ease;
+}
+
+.switch-card strong,
+.mini-tab strong {
+  color: var(--text);
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 0.95rem;
+}
+
+.switch-card span,
+.mini-tab span,
+.system-card-head span,
+.related-copy span {
+  font-size: 0.78rem;
+  color: color-mix(in srgb, var(--page-accent) 72%, white);
+}
+
+.switch-card.is-active,
+.switch-card:hover,
+.mini-tab.is-active,
+.mini-tab:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--page-accent) 60%, rgba(255, 255, 255, 0.18));
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  padding: 8px 0 10px;
+}
+
+.proof-card,
+.profile-panel {
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.proof-index {
+  color: color-mix(in srgb, var(--page-accent) 74%, white);
+  font-size: 0.92rem;
+}
+
+.proof-card h2,
+.info-card h2,
+.module-card h3 {
+  margin: 10px 0 0;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 1.24rem;
+}
+
+.proof-card p,
+.system-summary,
+.signal-list p,
+.timeline-list p,
+.compact-list li,
+.gallery-copy span,
+.related-copy span,
+.muted-paragraph {
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+.catalog-head,
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 28px 0 18px;
+}
+
+.catalog-head h2,
+.section-head h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 0.98;
+}
+
+.system-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.system-card {
+  display: grid;
+  gap: 16px;
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}
+
+.system-media {
+  min-height: 260px;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip-row span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--page-accent) 24%, rgba(255, 255, 255, 0.08));
+  background: rgba(255, 255, 255, 0.03);
+  color: color-mix(in srgb, var(--page-accent) 76%, white);
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 0.82rem;
+}
+
+.signal-list {
+  display: grid;
+  gap: 10px;
+}
+
+.signal-list p {
+  margin: 0;
+  padding-left: 14px;
+  border-left: 2px solid color-mix(in srgb, var(--page-accent) 50%, transparent);
+}
+
+.system-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.text-link {
+  color: color-mix(in srgb, var(--page-accent) 78%, white);
+  font-family: "Chakra Petch", sans-serif;
+}
+
+.text-link:hover {
+  color: #fff;
+}
+
+.profile-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-top: 26px;
+}
+
+.profile-actions {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+
+.site-footer {
+  padding: 22px 0 8px;
+  color: var(--muted);
+  text-align: center;
 }
 
 .media-shell {
   position: relative;
   overflow: hidden;
   border-radius: 20px;
-  border: 1px solid color-mix(in srgb, var(--accent, var(--page-accent)) 16%, rgba(255, 255, 255, 0.08));
+  border: 1px solid color-mix(in srgb, var(--page-accent) 24%, rgba(255, 255, 255, 0.1));
   background:
-    radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--accent, var(--page-accent)) 10%, transparent), transparent 28%),
-    linear-gradient(180deg, rgba(7, 11, 20, 0.96), rgba(6, 9, 16, 0.96));
-  isolation: isolate;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    #060b15;
 }
 
 .media-shell::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: var(--preview);
-  background-size: cover;
-  background-position: center;
-  opacity: 0.22;
-  filter: blur(28px) saturate(125%);
+  background: var(--preview) center / cover no-repeat;
+  filter: blur(30px);
+  opacity: 0.2;
   transform: scale(1.08);
-}
-
-.media-shell::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 18%),
-    linear-gradient(135deg, transparent 0 74%, rgba(255, 255, 255, 0.06) 100%);
 }
 
 .media-shell img {
@@ -496,250 +656,170 @@ section {
   height: 100%;
 }
 
-.media-fit-contain {
-  display: grid;
-  place-items: center;
-}
-
 .media-fit-contain img {
   object-fit: contain;
-  padding: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0));
 }
 
 .media-fit-cover img {
   object-fit: cover;
 }
 
-.spotlight-media {
-  min-height: 360px;
-}
-
-.catalog-media {
-  min-height: 220px;
-}
-
-.product-visual {
-  min-height: 420px;
-}
-
-.media-shell-mini {
-  min-height: 160px;
-}
-
-.media-shell-visual {
-  min-height: 180px;
-}
-
-.brief-grid,
-.overview-grid,
-.feature-grid {
+.product-hero {
   display: grid;
-  gap: 16px;
-}
-
-.brief-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.brief-card,
-.overview-card,
-.feature-card {
-  padding: 22px;
-  border-radius: var(--radius-lg);
-}
-
-.brief-index,
-.feature-index {
-  color: color-mix(in srgb, var(--page-accent) 84%, white);
-}
-
-.brief-card h2,
-.feature-card h3 {
-  margin-top: 12px;
-  font-size: 1.6rem;
-}
-
-.catalog-head,
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: end;
-}
-
-.catalog-head h2,
-.section-head h2 {
-  margin-top: 14px;
-  font-size: clamp(2.2rem, 4vw, 3.8rem);
-}
-
-.catalog-head p,
-.section-head p {
-  max-width: 52ch;
-}
-
-.catalog-grid,
-.visual-grid,
-.related-grid {
-  display: grid;
-  gap: 16px;
-}
-
-.catalog-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.catalog-card {
-  display: grid;
-  gap: 0;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 22px;
   border-radius: var(--radius-xl);
-  overflow: hidden;
+  padding: 28px;
+  margin-top: 18px;
 }
 
-.catalog-copy {
+.product-copy h1 {
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+}
+
+.back-link {
+  color: color-mix(in srgb, var(--page-accent) 74%, white);
+  font-family: "Chakra Petch", sans-serif;
+}
+
+.product-strip {
   display: grid;
-  gap: 14px;
-  padding: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 20px;
 }
 
-.catalog-copy p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.catalog-tags,
-.reason-pills {
+.product-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-.catalog-tags span,
-.reason-pills span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  padding: 0 12px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.03);
-  color: color-mix(in srgb, var(--text) 88%, var(--page-accent));
-  font-size: 0.86rem;
-}
-
-.catalog-footer {
-  display: flex;
-  justify-content: space-between;
+.purchase-panel {
+  display: grid;
   gap: 16px;
 }
 
-.text-link {
+.purchase-visual {
+  min-height: 280px;
+}
+
+.purchase-copy {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tab-row {
+  border-radius: 22px;
+  padding: 14px;
+  margin-top: 18px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.info-card {
+  border-radius: 22px;
+  padding: 22px;
+}
+
+.timeline-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.timeline-list article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.timeline-list span,
+.module-card span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--page-accent) 20%, transparent);
   color: color-mix(in srgb, var(--page-accent) 82%, white);
   font-family: "Chakra Petch", sans-serif;
 }
 
-.profile-callout,
-.buy-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  padding: 24px 26px;
-  border-radius: var(--radius-xl);
-}
-
-.product-hero {
-  min-height: auto;
-  padding-top: 8px;
-}
-
-.product-copy h1 {
-  margin-top: 18px;
-  font-size: clamp(3rem, 6vw, 5.4rem);
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: color-mix(in srgb, var(--page-accent) 82%, white);
-  font-weight: 700;
-}
-
-.detail-tabs {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  margin-top: 22px;
-  padding-bottom: 6px;
-  scrollbar-width: none;
-}
-
-.detail-tabs::-webkit-scrollbar {
-  display: none;
-}
-
-.detail-tab {
-  min-width: 180px;
-  padding: 12px 14px;
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.detail-tab.is-active {
-  border-color: color-mix(in srgb, var(--page-accent) 40%, rgba(255, 255, 255, 0.1));
-  background: color-mix(in srgb, var(--page-accent) 10%, rgba(255, 255, 255, 0.03));
-}
-
-.overview-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
 .compact-list {
-  margin: 0;
+  margin: 16px 0 0;
   padding-left: 18px;
-  color: var(--muted);
-  line-height: 1.8;
+  display: grid;
+  gap: 10px;
 }
 
-.visual-grid {
+.gallery-grid {
+  display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 18px;
 }
 
-.visual-card {
+.gallery-card {
   grid-column: span 4;
   display: grid;
-  gap: 0;
+  gap: 12px;
+  border-radius: 22px;
   padding: 14px;
-  border-radius: var(--radius-lg);
-  text-align: left;
 }
 
-.visual-card-wide {
-  grid-column: span 12;
+.gallery-card-wide {
+  grid-column: span 6;
 }
 
-.visual-copy {
-  display: grid;
-  gap: 8px;
-  padding: 14px 4px 2px;
+.gallery-card .media-shell {
+  min-height: 220px;
 }
 
-.compact-feature-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.gallery-card-wide .media-shell {
+  min-height: 260px;
 }
 
+.gallery-copy {
+  padding: 4px 4px 0;
+}
+
+.module-grid,
 .related-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.module-card,
+.related-card {
+  border-radius: 22px;
+  padding: 20px;
 }
 
 .related-card {
   display: grid;
-  gap: 12px;
-  padding: 14px;
-  border-radius: var(--radius-lg);
+  gap: 14px;
+}
+
+.media-shell-mini {
+  min-height: 150px;
+}
+
+.missing-state {
+  border-radius: 24px;
+  padding: 36px;
+  margin-top: 24px;
+  text-align: center;
 }
 
 .lightbox[hidden] {
@@ -749,81 +829,66 @@ section {
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 40;
-  display: grid;
-  place-items: center;
-  padding: 24px;
+  z-index: 60;
 }
 
 .lightbox-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(3, 7, 14, 0.86);
-  backdrop-filter: blur(14px);
+  background: rgba(2, 4, 10, 0.82);
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-frame {
+  position: relative;
+  z-index: 1;
+  width: min(1100px, calc(100vw - 32px));
+  margin: 72px auto 0;
+  padding: 18px;
+  border-radius: 26px;
+  border: 1px solid var(--line-strong);
+  background: rgba(6, 10, 18, 0.95);
+}
+
+.lightbox-frame img {
+  border-radius: 18px;
+  max-height: 72vh;
+  margin: 0 auto;
+}
+
+.lightbox-frame figcaption {
+  margin-top: 14px;
+  color: var(--muted);
+  text-align: center;
 }
 
 .lightbox-close {
   position: absolute;
   top: 18px;
   right: 18px;
-  z-index: 1;
+  z-index: 2;
   min-height: 42px;
-  padding: 0 16px;
+  padding: 0 14px;
   border-radius: 14px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--text);
-}
-
-.lightbox-frame {
-  position: relative;
-  z-index: 1;
-  width: min(1040px, calc(100vw - 48px));
-  margin: 0;
-  padding: 16px;
-  border-radius: 24px;
-  border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(10, 17, 30, 0.98), rgba(8, 13, 24, 0.96));
-  box-shadow: var(--shadow-xl);
-}
-
-.lightbox-frame img {
-  width: 100%;
-  max-height: calc(100vh - 220px);
-  object-fit: contain;
-  border-radius: 18px;
-  background: #060b12;
-}
-
-.lightbox-frame figcaption {
-  margin-top: 12px;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.site-footer {
-  padding: 16px 0 28px;
-  color: var(--muted);
-}
-
-.missing-state {
-  display: grid;
-  gap: 18px;
-  place-items: start;
-  min-height: 58vh;
-  align-content: center;
-  padding: 28px;
-  border-radius: var(--radius-xl);
-}
-
-.body-locked {
-  overflow: hidden;
 }
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 520ms ease, transform 520ms ease;
+  transform: translateY(22px);
+  transition:
+    opacity 560ms ease,
+    transform 560ms ease;
+}
+
+.reveal.delay-1 {
+  transition-delay: 90ms;
+}
+
+.reveal.delay-2 {
+  transition-delay: 180ms;
 }
 
 .reveal.is-visible {
@@ -831,121 +896,120 @@ section {
   transform: translateY(0);
 }
 
-.delay-1 {
-  transition-delay: 90ms;
-}
-
-.delay-2 {
-  transition-delay: 160ms;
-}
-
 @media (max-width: 1180px) {
-  .home-hero,
+  .hero-grid,
   .product-hero,
-  .spotlight-card,
-  .catalog-head,
-  .section-head,
-  .profile-callout,
-  .buy-card {
+  .profile-panel {
     grid-template-columns: 1fr;
-    flex-direction: column;
-    align-items: stretch;
   }
 
-  .catalog-grid,
-  .overview-grid,
-  .brief-grid,
+  .status-band,
+  .deck-metrics,
+  .product-strip,
+  .proof-grid,
+  .system-grid,
+  .product-grid,
+  .module-grid,
   .related-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .signal-row,
-  .product-stats,
-  .spotlight-metrics,
-  .spotlight-switcher,
-  .compact-feature-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .gallery-card,
+  .gallery-card-wide {
+    grid-column: span 6;
   }
 
-  .visual-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .visual-card,
-  .visual-card-wide {
-    grid-column: span 1;
+  .hero-copy {
+    min-height: auto;
   }
 }
 
 @media (max-width: 760px) {
-  .app-shell {
-    width: min(100vw - 24px, 1280px);
+  .page-shell {
+    width: min(100vw - 20px, 100%);
   }
 
   .site-header,
   .site-nav,
   .hero-actions,
-  .signal-row,
-  .spotlight-switcher,
-  .catalog-grid,
-  .brief-grid,
-  .overview-grid,
-  .related-grid,
-  .visual-grid,
-  .compact-feature-grid,
-  .product-stats,
-  .spotlight-metrics {
-    grid-template-columns: 1fr;
-  }
-
-  .site-header {
+  .deck-actions,
+  .system-actions,
+  .product-actions {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .site-nav {
-    display: grid;
-    gap: 10px;
+  .site-header {
+    padding-top: 16px;
   }
 
-  .nav-cta {
-    width: 100%;
-  }
-
-  .hero-copy h1,
-  .product-copy h1 {
-    font-size: clamp(2.8rem, 12vw, 4.4rem);
-  }
-
-  .spotlight-media,
-  .product-visual,
-  .catalog-media,
-  .media-shell-visual,
-  .media-shell-mini {
-    min-height: 220px;
-  }
-
-  .spotlight-card,
-  .catalog-card,
+  .hero-copy,
+  .hero-stage,
+  .proof-card,
+  .system-card,
+  .profile-panel,
+  .product-hero,
+  .tab-row,
+  .info-card,
+  .gallery-card,
+  .module-card,
   .related-card,
-  .visual-card,
-  .brief-card,
-  .overview-card,
-  .feature-card,
-  .profile-callout,
-  .buy-card,
   .missing-state {
     border-radius: 22px;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .hero-copy,
+  .product-hero,
+  .proof-card,
+  .system-card,
+  .profile-panel,
+  .info-card,
+  .module-card,
+  .related-card {
+    padding: 18px;
+  }
+
+  .hero-copy h1,
+  .product-copy h1,
+  .catalog-head h2,
+  .section-head h2,
+  .missing-state h1 {
+    font-size: clamp(2.2rem, 12vw, 3.4rem);
+  }
+
+  .status-band,
+  .deck-metrics,
+  .product-strip,
+  .proof-grid,
+  .system-grid,
+  .product-grid,
+  .module-grid,
+  .related-grid,
+  .hero-switcher,
+  .tab-row {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-head,
+  .section-head {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-card,
+  .gallery-card-wide {
+    grid-column: auto;
+  }
+
+  .deck-media,
+  .system-media,
+  .purchase-visual,
+  .gallery-card .media-shell,
+  .gallery-card-wide .media-shell {
+    min-height: 190px;
   }
 }

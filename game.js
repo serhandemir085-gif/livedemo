@@ -38,12 +38,13 @@ function gameHref(game) {
 
 function renderNotFound() {
   if (!detailRoot) return
+
   detailRoot.innerHTML = `
     <section class="missing-state reveal is-visible">
-      <span class="eyebrow">SİSTEM BULUNAMADI</span>
-      <h1>İstediğin ürün sayfası şu an yok.</h1>
-      <p>Ana vitrine dönüp diğer sistemleri açabilirsin.</p>
-      <a class="button button-primary" href="${homeHref()}">Ürün kataloğuna dön</a>
+      <span class="section-kicker">SYSTEM NOT FOUND</span>
+      <h1>İstediğin ürün sayfası bulunamadı.</h1>
+      <p>Ana showroom'a dönüp diğer sistemleri açabilirsin.</p>
+      <a class="button button-primary" href="${homeHref()}">Showroom'a dön</a>
     </section>
   `
 }
@@ -58,32 +59,12 @@ function renderDetail(game) {
   detailRoot.innerHTML = `
     <section class="product-hero reveal">
       <div class="product-copy">
-        <a class="back-link" href="${homeHref()}">← Kataloğa dön</a>
-        <span class="eyebrow">${escapeHtml(game.eyebrow)}</span>
+        <a class="back-link" href="${homeHref()}">← Showroom'a dön</a>
+        <span class="section-kicker">${escapeHtml(game.eyebrow)}</span>
         <h1>${escapeHtml(game.title)}</h1>
-        <p class="detail-description">${escapeHtml(game.offerSummary || game.description)}</p>
+        <p class="product-summary">${escapeHtml(game.summary)}</p>
 
-        <div class="product-actions">
-          <a class="button button-primary" href="${escapeHtml(game.buyUrl || window.LIVEPLAY_PROFILE_URL || "#")}" target="_blank" rel="noreferrer">
-            ${escapeHtml(game.buyLabel || "İlana git")}
-          </a>
-          <a class="button button-secondary" href="${escapeHtml(window.LIVEPLAY_PROFILE_URL || "#")}" target="_blank" rel="noreferrer">
-            CodeHub profili
-          </a>
-        </div>
-
-        <div class="detail-tabs">
-          ${window.LIVEPLAY_GAMES.map(
-            (item) => `
-              <a class="detail-tab ${item.id === game.id ? "is-active" : ""}" href="${gameHref(item)}">
-                <span>${escapeHtml(item.eyebrow)}</span>
-                <strong>${escapeHtml(item.title)}</strong>
-              </a>
-            `,
-          ).join("")}
-        </div>
-
-        <div class="product-stats">
+        <div class="product-strip">
           ${game.metrics
             .map(
               (metric) => `
@@ -95,66 +76,107 @@ function renderDetail(game) {
             )
             .join("")}
         </div>
+
+        <div class="product-actions">
+          <a class="button button-primary" href="${escapeHtml(game.buyUrl || window.LIVEPLAY_PROFILE_URL || "#")}" target="_blank" rel="noreferrer">
+            ${escapeHtml(game.buyLabel || "İlanı aç")}
+          </a>
+          <a class="button button-secondary" href="${escapeHtml(window.LIVEPLAY_PROFILE_URL || "#")}" target="_blank" rel="noreferrer">
+            CodeHub profili
+          </a>
+        </div>
       </div>
 
-      <div class="product-visual media-shell media-fit-${game.homeFit}" style="--preview:url('${assetPath(game.homeImage)}')">
-        <img src="${assetPath(game.homeImage)}" alt="${escapeHtml(game.title)} ana görseli" />
-      </div>
+      <aside class="purchase-panel">
+        <div class="purchase-visual media-shell media-fit-${game.homeFit}" style="--preview:url('${assetPath(game.homeImage)}')">
+          <img src="${assetPath(game.homeImage)}" alt="${escapeHtml(game.title)} önizleme görseli" />
+        </div>
+
+        <div class="purchase-copy">
+          <span class="purchase-label">SATIŞ AÇISI</span>
+          <strong>${escapeHtml(game.offerTitle)}</strong>
+          <p>${escapeHtml(game.offerSummary)}</p>
+          <ul class="compact-list">
+            ${game.salesPoints.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}
+          </ul>
+        </div>
+      </aside>
     </section>
 
-    <section class="overview-grid reveal">
-      <article class="overview-card">
-        <span class="panel-label">Ne yapar?</span>
-        <p>${escapeHtml(game.growthLead || game.teaser)}</p>
-        <div class="catalog-tags">
-          ${game.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
+    <section class="tab-row reveal">
+      ${window.LIVEPLAY_GAMES.map(
+        (item) => `
+          <a class="mini-tab ${item.id === game.id ? "is-active" : ""}" href="${gameHref(item)}">
+            <span>${escapeHtml(item.eyebrow)}</span>
+            <strong>${escapeHtml(item.title)}</strong>
+          </a>
+        `,
+      ).join("")}
+    </section>
+
+    <section class="product-grid reveal">
+      <article class="info-card">
+        <span class="card-label">Yayında ne olur?</span>
+        <h2>İlk saniyeden anlaşılır akış</h2>
+        <div class="timeline-list">
+          ${game.streamMoments
+            .map(
+              (item, index) => `
+                <article>
+                  <span>${String(index + 1).padStart(2, "0")}</span>
+                  <p>${escapeHtml(item)}</p>
+                </article>
+              `,
+            )
+            .join("")}
         </div>
       </article>
 
-      <article class="overview-card">
-        <span class="panel-label">Kurulum</span>
+      <article class="info-card">
+        <span class="card-label">Paket içeriği</span>
+        <h2>Ürünün anlattığı modüller</h2>
+        <ul class="compact-list">
+          ${game.packageItems.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+      </article>
+
+      <article class="info-card">
+        <span class="card-label">Neden satın alınır?</span>
+        <h2>Yayıncı tarafında değeri net</h2>
+        <ul class="compact-list">
+          ${game.marketBullets.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+      </article>
+
+      <article class="info-card">
+        <span class="card-label">Teknik yapı</span>
+        <h2>Kurulum ve kullanım</h2>
         <p>${escapeHtml(game.setup)}</p>
-      </article>
-
-      <article class="overview-card">
-        <span class="panel-label">Paket hissi</span>
-        <ul class="compact-list">
-          ${(game.packageItems || []).slice(0, 4).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
-        </ul>
-      </article>
-
-      <article class="overview-card">
-        <span class="panel-label">Teknik vurgular</span>
-        <ul class="compact-list">
-          <li>${escapeHtml(game.compatibility)}</li>
-          ${(game.marketBullets || []).slice(0, 3).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
-        </ul>
+        <p class="muted-paragraph">${escapeHtml(game.compatibility)}</p>
       </article>
     </section>
 
     <section class="section-head reveal">
-      <span class="eyebrow">SAHNE DURUMLARI</span>
-      <h2>Yayında nasıl görünür?</h2>
-      <p>Küçük ve okunabilir sahne önizlemeleriyle ürün davranışını hızlıca göster.</p>
+      <span class="section-kicker">GÖRSEL AKIŞ</span>
+      <h2>Ürünün sahnede nasıl göründüğü</h2>
+      <p>Büyük tek bir görsel yerine farklı sahne anları küçük ve net kartlarla sunulur.</p>
     </section>
 
-    <section class="visual-grid">
+    <section class="gallery-grid">
       ${game.gallery
-        .slice(0, 4)
         .map(
           (item, index) => `
             <button
-              class="visual-card reveal ${index === 0 ? "visual-card-wide" : ""}"
+              class="gallery-card reveal ${index === 0 ? "gallery-card-wide" : ""}"
               type="button"
               data-lightbox-src="${assetPath(item.src)}"
               data-lightbox-title="${escapeHtml(item.title)}"
               data-lightbox-caption="${escapeHtml(item.caption)}"
-              style="--accent:${game.accent}; --glow:${game.glow};"
             >
-              <div class="media-shell media-shell-visual media-fit-${item.fit}" style="--preview:url('${assetPath(item.src)}')">
+              <div class="media-shell media-fit-${item.fit}" style="--preview:url('${assetPath(item.src)}')">
                 <img src="${assetPath(item.src)}" alt="${escapeHtml(item.title)}" />
               </div>
-              <div class="visual-copy">
+              <div class="gallery-copy">
                 <strong>${escapeHtml(item.title)}</strong>
                 <span>${escapeHtml(item.caption)}</span>
               </div>
@@ -165,17 +187,16 @@ function renderDetail(game) {
     </section>
 
     <section class="section-head reveal">
-      <span class="eyebrow">ÖNE ÇIKAN NOKTALAR</span>
-      <h2>Bu sistemin güçlü tarafları</h2>
+      <span class="section-kicker">ÖNE ÇIKAN MODÜLLER</span>
+      <h2>Sistemin güçlü tarafları</h2>
     </section>
 
-    <section class="feature-grid compact-feature-grid">
+    <section class="module-grid">
       ${game.features
-        .slice(0, 4)
         .map(
           (feature, index) => `
-            <article class="feature-card reveal ${index % 2 === 0 ? "" : "delay-1"}">
-              <span class="feature-index">${String(index + 1).padStart(2, "0")}</span>
+            <article class="module-card reveal ${index % 2 === 0 ? "" : "delay-1"}">
+              <span>${String(index + 1).padStart(2, "0")}</span>
               <h3>${escapeHtml(feature.title)}</h3>
               <p>${escapeHtml(feature.text)}</p>
             </article>
@@ -185,15 +206,15 @@ function renderDetail(game) {
     </section>
 
     <section class="section-head reveal">
-      <span class="eyebrow">DİĞER SİSTEMLER</span>
-      <h2>Geçiş yapabileceğin diğer ürünler</h2>
+      <span class="section-kicker">DİĞER ÜRÜNLER</span>
+      <h2>Sayfalar arasında geçiş yap</h2>
     </section>
 
-    <section class="related-grid compact-related-grid">
+    <section class="related-grid">
       ${window.LIVEPLAY_GAMES.filter((item) => item.id !== game.id)
         .map(
           (item) => `
-            <a class="related-card reveal" href="${gameHref(item)}" style="--accent:${item.accent}; --glow:${item.glow};">
+            <a class="related-card reveal" href="${gameHref(item)}">
               <div class="media-shell media-shell-mini media-fit-${item.homeFit}" style="--preview:url('${assetPath(item.homeImage)}')">
                 <img src="${assetPath(item.homeImage)}" alt="${escapeHtml(item.title)}" />
               </div>
@@ -213,7 +234,7 @@ function openLightbox(src, title, caption) {
   if (!lightbox || !lightboxImage || !lightboxCaption) return
   lightboxImage.src = src
   lightboxImage.alt = title
-  lightboxCaption.textContent = `${title} — ${caption}`
+  lightboxCaption.textContent = `${title} - ${caption}`
   lightbox.hidden = false
   document.body.classList.add("body-locked")
 }
@@ -258,7 +279,7 @@ function bindPageTransitions() {
       document.body.classList.add("page-leaving")
       window.setTimeout(() => {
         window.location.href = href
-      }, 200)
+      }, 220)
     })
   })
 }
@@ -270,7 +291,7 @@ function bootReveals() {
         if (entry.isIntersecting) entry.target.classList.add("is-visible")
       })
     },
-    { threshold: 0.12 },
+    { threshold: 0.14 },
   )
 
   document.querySelectorAll(".reveal").forEach((element) => observer.observe(element))
@@ -280,9 +301,7 @@ function bootReveals() {
 }
 
 function init() {
-  const gameId = getGameId()
-  const game = window.LIVEPLAY_LOOKUP?.[gameId]
-
+  const game = window.LIVEPLAY_LOOKUP?.[getGameId()]
   if (!game) {
     renderNotFound()
     return
