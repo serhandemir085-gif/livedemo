@@ -8,7 +8,6 @@ const growthMatrix = document.querySelector("#growthMatrix")
 const creatorVoice = document.querySelector("#creatorVoice")
 
 let featuredIndex = 0
-let featuredTimer = null
 
 function escapeHtml(value) {
   return String(value)
@@ -16,6 +15,10 @@ function escapeHtml(value) {
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
+}
+
+function getGamePageHref(game) {
+  return `./oyunlar/${encodeURIComponent(game.id)}.html`
 }
 
 function renderFeatured(game) {
@@ -72,8 +75,8 @@ function renderFeatured(game) {
           ${game.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
         </div>
 
-        <a class="button button-primary" href="./game.html?oyun=${encodeURIComponent(game.id)}">
-          Detay sayfasını aç
+        <a class="button button-primary" href="${getGamePageHref(game)}">
+          Kendi sekmesini aç
         </a>
       </div>
     </article>
@@ -165,7 +168,7 @@ function createCard(game) {
   return `
     <a
       class="game-card game-card--${game.size} tilt-zone reveal"
-      href="./game.html?oyun=${encodeURIComponent(game.id)}"
+      href="${getGamePageHref(game)}"
       style="--accent:${game.accent}; --glow:${game.glow};"
     >
       <div class="card-media-wrap">
@@ -202,7 +205,7 @@ function createCard(game) {
 
         <div class="card-footer">
           <span>${escapeHtml(game.compatibility)}</span>
-          <strong>Detay sayfası</strong>
+          <strong>Ayrı oyun sekmesi</strong>
         </div>
       </div>
     </a>
@@ -230,28 +233,10 @@ function bindMiniRail() {
     button.addEventListener("click", () => {
       const nextIndex = Number(button.getAttribute("data-featured-index"))
       if (!Number.isNaN(nextIndex)) {
-        stopFeaturedTimer()
         setFeatured(nextIndex)
-        startFeaturedTimer()
       }
     })
   })
-}
-
-function startFeaturedTimer() {
-  stopFeaturedTimer()
-  if (games.length < 2) return
-  featuredTimer = window.setInterval(() => {
-    const nextIndex = (featuredIndex + 1) % games.length
-    setFeatured(nextIndex)
-  }, 5400)
-}
-
-function stopFeaturedTimer() {
-  if (featuredTimer) {
-    window.clearInterval(featuredTimer)
-    featuredTimer = null
-  }
 }
 
 function bootReveals() {
@@ -302,7 +287,6 @@ function init() {
   setFeatured(0)
   bootReveals()
   bindCursorGlow()
-  startFeaturedTimer()
 }
 
 init()

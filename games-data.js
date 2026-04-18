@@ -604,9 +604,109 @@ const STORY_PACKS = {
   },
 }
 
+const COMMERCIAL_PACKS = {
+  takim: {
+    offerSummary:
+      "Itemsatış tarafındaki takım oylama ve keşfet scripti diline yakın şekilde bu ürün; yüksek chat, Super Chat tetikleri, çark gerilimi ve yayıncının tek yayında daha fazla bağış görmesini hedefleyen premium yayın motoru gibi konumlanır.",
+    marketBullets: [
+      "Daha fazla chat, daha fazla bağış mantığı",
+      "Super Chat sonrası otomatik reaksiyon",
+      "Keşfet ve izlenme süresi odaklı tur yapısı",
+      "Tek seferlik kurulum ve yayıncı dostu akış",
+    ],
+    packageItems: [
+      "OBS uyumlu dikey sahne düzeni",
+      "Hazır takım temaları ve skor efektleri",
+      "Çark, bonus ve sonuç anı kurgusu",
+      "Kurulum akışı ve kullanım mantığı",
+    ],
+  },
+  arena: {
+    offerSummary:
+      "Futbol Arena 3D Pro, bağışı doğrudan skora çevirdiği için satış sayfasında 'anlaşılır rekabet + görünür gelir etkisi' vurgusuyla öne çıkabilecek bir yayın aracı gibi davranır.",
+    marketBullets: [
+      "Bağışın anında skora dönmesi",
+      "Tek bakışta anlaşılır takım rekabeti",
+      "Kısa tur mantığıyla yüksek tempo",
+      "Yayıncı için düşük operasyon yükü",
+    ],
+    packageItems: [
+      "Tek pencere arena sahnesi",
+      "Skor ve takım kartı sistematiği",
+      "Anlatım kutusu ve süre bandı",
+      "Hızlı kurulum mantığı",
+    ],
+  },
+  flaggame: {
+    offerSummary:
+      "FlagGame sade görünmesine rağmen satış dili açısından 'düşük bariyer, yüksek tahmin dürtüsü, tekrar oynanabilir kısa segment' formülüyle kitle toplamak için güçlü bir ürün gibi konumlanır.",
+    marketBullets: [
+      "İlk bakışta anlaşılır tahmin oyunu",
+      "Mobil izleyicide temiz okunabilirlik",
+      "Kısa ama tekrar oynanabilir yayın turları",
+      "Yorum yazdıran ülke ve bayrak rekabeti",
+    ],
+    packageItems: [
+      "Tam oyun sahnesi görünümü",
+      "Kazanan ve kalanlar bilgisi",
+      "Bayrak havuzu ve alt bank kurgusu",
+      "Yayıncıya kolay anlatılan oyun mantığı",
+    ],
+  },
+  quiz: {
+    offerSummary:
+      "Bilgi Yarışması, bekleme overlay'i yerine aktif soru ekranıyla açıldığı için satış sayfasında 'hazır etkileşim, hızlı cevap baskısı, skorla geri dönüş' vadeden teknoloji odaklı bir quiz sistemi gibi öne çıkar.",
+    marketBullets: [
+      "Aktif sahne ile anında başlayan oyun akışı",
+      "Süre baskısı sayesinde yüksek dikkat",
+      "Top 3 destek paneli ile gelir katmanı",
+      "Her soruda yeni mini final hissi",
+    ],
+    packageItems: [
+      "Soru, sayaç ve cevap paneli",
+      "Skor tablosu ve oyuncu görünürlüğü",
+      "Super Chat Top 3 desteği",
+      "Browser source uyumlu kurulum mantığı",
+    ],
+  },
+  deathnote: {
+    offerSummary:
+      "Death Note Live, klasik yayın oyunlarından ayrılan atmosferi sayesinde satış tarafında 'niş ama çok akılda kalıcı premium sahne' olarak konumlanabilecek estetik odaklı bir deneyim sunar.",
+    marketBullets: [
+      "Sinematik ve ayırt edici yayın estetiği",
+      "Masaüstü sızıntısı olmadan temiz sahne",
+      "Kısa kliplerde bile dikkat çeken ton",
+      "Özel etkinlik ve konsept yayın uyumu",
+    ],
+    packageItems: [
+      "Temiz pencere sahnesi",
+      "Kalem ve sayfa odaklı kompozisyon",
+      "Gerilim hissi taşıyan görsel dil",
+      "Yayın kimliği güçlendiren farklı atmosfer",
+    ],
+  },
+  pickaxe: {
+    offerSummary:
+      "Minecraft TNT Patlatma ve Kazma scripti ilanlarındaki yaklaşım gibi bu ürün de 'yayın linkini gir, komutları çalıştır, sohbeti canlı oyun alanına çevir' mantığıyla yüksek etkileşimli otomasyon paketi hissi verir.",
+    marketBullets: [
+      "Sohbet komutlarını anlık algılayan yapı",
+      "Tek komutta fiziksel sonuç üreten kaos motoru",
+      "Meme ve klip potansiyeli yüksek sahneler",
+      "Kurulumu kolay, izlenmesi zor bırakılan format",
+    ],
+    packageItems: [
+      "Tam görünür oyun alanı ve temiz crop",
+      "Yüzey, düşüş ve cevher sahne katmanları",
+      "Komut tabanlı olay akışı mantığı",
+      "Yayın başlatma ve otomasyon hissi",
+    ],
+  },
+}
+
 window.LIVEPLAY_GAMES = window.LIVEPLAY_GAMES.map((game) => ({
   ...game,
   ...(STORY_PACKS[game.id] || {}),
+  ...(COMMERCIAL_PACKS[game.id] || {}),
 }))
 
 window.LIVEPLAY_LOOKUP = Object.fromEntries(

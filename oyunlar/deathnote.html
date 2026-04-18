@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Death Note Live: atmosferik typing deneyimi için teknoloji ve yayın estetiği odaklı detay sayfası."
+    />
+    <meta name="theme-color" content="#070911" />
+    <title>LivePlay | Death Note Live</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oxanium:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <script defer src="../games-data.js"></script>
+    <script defer src="../game.js"></script>
+  </head>
+  <body class="page-detail" data-game-id="deathnote">
+    <a class="skip-link" href="#detayIcerik">İçeriğe geç</a>
+    <div class="bg-layer bg-layer-a"></div>
+    <div class="bg-layer bg-layer-b"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="cursor-glow"></div>
+    <header class="site-header">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">LP</span>
+        <span class="brand-copy">
+          <strong>LivePlay</strong>
+          <small>Death Note ürün sayfası</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Detay menüsü">
+        <a href="../index.html#oyunlar">Tüm oyunlar</a>
+        <a href="../index.html#kesfet">Keşfet mantığı</a>
+      </nav>
+      <a class="nav-cta" href="../index.html#oyunlar">Listeye dön</a>
+    </header>
+    <main id="detayIcerik" class="detail-root"></main>
+    <div class="lightbox" id="lightbox" hidden>
+      <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Görseli kapat">Kapat</button>
+      <div class="lightbox-backdrop" data-close-lightbox></div>
+      <figure class="lightbox-frame">
+        <img id="lightboxImage" alt="" />
+        <figcaption id="lightboxCaption"></figcaption>
+      </figure>
+    </div>
+  </body>
+</html>

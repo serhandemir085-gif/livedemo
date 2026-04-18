@@ -4,6 +4,7 @@ const lightboxImage = document.querySelector("#lightboxImage")
 const lightboxCaption = document.querySelector("#lightboxCaption")
 const lightboxClose = document.querySelector("#lightboxClose")
 const cursorGlowDetail = document.querySelector(".cursor-glow")
+const isNestedGamePage = window.location.pathname.includes("/oyunlar/")
 
 function escapeHtml(value) {
   return String(value)
@@ -18,6 +19,25 @@ function getGameFromUrl() {
   return params.get("oyun") || ""
 }
 
+function getGameId() {
+  return document.body.dataset.gameId || getGameFromUrl()
+}
+
+function assetPath(value) {
+  if (!isNestedGamePage) return value
+  return value.replace("./", "../")
+}
+
+function getHomeHref() {
+  return isNestedGamePage ? "../index.html#oyunlar" : "./index.html#oyunlar"
+}
+
+function getGameHref(game) {
+  return isNestedGamePage
+    ? `./${encodeURIComponent(game.id)}.html`
+    : `./oyunlar/${encodeURIComponent(game.id)}.html`
+}
+
 function renderNotFound() {
   if (!detailRoot) return
   detailRoot.innerHTML = `
@@ -25,7 +45,7 @@ function renderNotFound() {
       <span class="eyebrow">OYUN BULUNAMADI</span>
       <h1>İstediğin detay sayfası şu an yok.</h1>
       <p>Listeye dönüp diğer vitrinleri açabilirsin.</p>
-      <a class="button button-primary" href="./index.html#oyunlar">Oyun listesine dön</a>
+      <a class="button button-primary" href="${getHomeHref()}">Oyun listesine dön</a>
     </section>
   `
 }
@@ -36,6 +56,8 @@ function renderDetail(game) {
   const growthMap = game.growthMap || []
   const creatorLines = game.creatorLines || []
   const audienceFlow = game.audienceFlow || []
+  const marketBullets = game.marketBullets || []
+  const packageItems = game.packageItems || []
 
   document.title = `LivePlay | ${game.title}`
   document.documentElement.style.setProperty("--page-accent", game.accent)
@@ -44,10 +66,21 @@ function renderDetail(game) {
   detailRoot.innerHTML = `
     <section class="detail-hero reveal">
       <div class="detail-copy">
-        <a class="back-link" href="./index.html#oyunlar">← Tüm oyunlara dön</a>
+        <a class="back-link" href="${getHomeHref()}">← Tüm oyunlara dön</a>
         <span class="eyebrow">${escapeHtml(game.eyebrow)}</span>
         <h1>${escapeHtml(game.title)}</h1>
         <p class="detail-description">${escapeHtml(game.description)}</p>
+
+        <div class="detail-tabs">
+          ${window.LIVEPLAY_GAMES.map(
+            (item) => `
+              <a class="detail-tab ${item.id === game.id ? "is-active" : ""}" href="${getGameHref(item)}">
+                <span>${escapeHtml(item.eyebrow)}</span>
+                <strong>${escapeHtml(item.title)}</strong>
+              </a>
+            `,
+          ).join("")}
+        </div>
 
         <div class="chip-row">
           ${game.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
@@ -68,8 +101,8 @@ function renderDetail(game) {
       </div>
 
       <div class="detail-visual">
-        <div class="media-shell media-shell-detail media-fit-${game.homeFit}" style="--preview:url('${game.homeImage}')">
-          <img src="${game.homeImage}" alt="${escapeHtml(game.title)} ana görseli" />
+        <div class="media-shell media-shell-detail media-fit-${game.homeFit}" style="--preview:url('${assetPath(game.homeImage)}')">
+          <img src="${assetPath(game.homeImage)}" alt="${escapeHtml(game.title)} ana görseli" />
         </div>
       </div>
     </section>
@@ -137,6 +170,39 @@ function renderDetail(game) {
     </section>
 
     <section class="section-head reveal">
+      <span class="eyebrow">ÜRÜN MANTIĞI</span>
+      <h2>Bu sistem satılırken hangi vaatlerle öne çıkıyor?</h2>
+      <p>Canlı yayın odaklı script satış dilindeki güçlü noktaları, teknoloji ve yayın akışı tarafından desteklenmiş şekilde burada topladık.</p>
+    </section>
+
+    <section class="detail-columns commerce-columns">
+      <article class="detail-panel detail-panel-wide reveal">
+        <span class="panel-label">Satış dilindeki ana vaat</span>
+        <p>${escapeHtml(game.offerSummary || game.growthLead || game.description)}</p>
+        <div class="reason-pills">
+          ${marketBullets.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}
+        </div>
+      </article>
+
+      <article class="detail-panel reveal delay-1">
+        <span class="panel-label">Paket içeriği hissi</span>
+        <ul class="pulse-list">
+          ${packageItems.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+      </article>
+
+      <article class="detail-panel reveal delay-2">
+        <span class="panel-label">Teknik vurgular</span>
+        <ul class="pulse-list">
+          <li>${escapeHtml(game.compatibility)}</li>
+          <li>${escapeHtml(game.metrics?.[0]?.value || "Canlı yayın için optimize kurulum")}</li>
+          <li>${escapeHtml(game.metrics?.[1]?.value || "Hızlı anlaşılır yayın mantığı")}</li>
+          <li>${escapeHtml(game.metrics?.[2]?.value || "Teknoloji odaklı gösterim")}</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section-head reveal">
       <span class="eyebrow">SAHNE GALERİSİ</span>
       <h2>Yayın içinde gerçekten nasıl görünür?</h2>
       <p>Her kart tıklanabilir. Büyük haliyle yalnızca oyunun kendisini görürsün.</p>
@@ -149,13 +215,13 @@ function renderDetail(game) {
             <button
               class="gallery-card gallery-card--${index === 0 ? "wide" : "standard"} reveal"
               type="button"
-              data-lightbox-src="${item.src}"
+              data-lightbox-src="${assetPath(item.src)}"
               data-lightbox-title="${escapeHtml(item.title)}"
               data-lightbox-caption="${escapeHtml(item.caption)}"
               style="--accent:${game.accent}; --glow:${game.glow};"
             >
-              <div class="media-shell media-shell-gallery media-fit-${item.fit}" style="--preview:url('${item.src}')">
-                <img src="${item.src}" alt="${escapeHtml(item.title)}" />
+              <div class="media-shell media-shell-gallery media-fit-${item.fit}" style="--preview:url('${assetPath(item.src)}')">
+                <img src="${assetPath(item.src)}" alt="${escapeHtml(item.title)}" />
               </div>
               <div class="gallery-copy">
                 <strong>${escapeHtml(item.title)}</strong>
@@ -196,9 +262,9 @@ function renderDetail(game) {
         .slice(0, 3)
         .map(
           (item) => `
-            <a class="related-card reveal" href="./game.html?oyun=${encodeURIComponent(item.id)}" style="--accent:${item.accent}; --glow:${item.glow};">
-              <div class="media-shell media-shell-mini media-fit-${item.homeFit}" style="--preview:url('${item.homeImage}')">
-                <img src="${item.homeImage}" alt="${escapeHtml(item.title)}" />
+            <a class="related-card reveal" href="${getGameHref(item)}" style="--accent:${item.accent}; --glow:${item.glow};">
+              <div class="media-shell media-shell-mini media-fit-${item.homeFit}" style="--preview:url('${assetPath(item.homeImage)}')">
+                <img src="${assetPath(item.homeImage)}" alt="${escapeHtml(item.title)}" />
               </div>
               <div class="related-copy">
                 <span>${escapeHtml(item.eyebrow)}</span>
@@ -277,7 +343,7 @@ function bindLightbox() {
 }
 
 function init() {
-  const gameId = getGameFromUrl()
+  const gameId = getGameId()
   const game = window.LIVEPLAY_LOOKUP?.[gameId]
 
   if (!game) {
