@@ -41,10 +41,10 @@ function renderNotFound() {
 
   detailRoot.innerHTML = `
     <section class="missing-state reveal is-visible">
-      <span class="section-kicker">SYSTEM NOT FOUND</span>
-      <h1>İstediğin ürün sayfası bulunamadı.</h1>
-      <p>Ana showroom'a dönüp diğer sistemleri açabilirsin.</p>
-      <a class="button button-primary" href="${homeHref()}">Showroom'a dön</a>
+      <span class="section-kicker">SAYFA BULUNAMADI</span>
+      <h1>İstenen sistem sayfası bulunamadı.</h1>
+      <p>Ana sayfaya dönerek diğer sistemleri inceleyebilirsiniz.</p>
+      <a class="button button-primary" href="${homeHref()}">Tüm sistemlere dön</a>
     </section>
   `
 }
@@ -59,7 +59,7 @@ function renderDetail(game) {
   detailRoot.innerHTML = `
     <section class="product-hero reveal">
       <div class="product-copy">
-        <a class="back-link" href="${homeHref()}">← Showroom'a dön</a>
+        <a class="back-link" href="${homeHref()}">← Tüm sistemlere dön</a>
         <span class="section-kicker">${escapeHtml(game.eyebrow)}</span>
         <h1>${escapeHtml(game.title)}</h1>
         <p class="product-summary">${escapeHtml(game.summary)}</p>

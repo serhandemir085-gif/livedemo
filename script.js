@@ -1,6 +1,5 @@
 const games = window.LIVEPLAY_GAMES || []
 const spotlightFrame = document.querySelector("#spotlightFrame")
-const spotlightSwitcher = document.querySelector("#spotlightSwitcher")
 const systemGrid = document.querySelector("#urunler")
 
 let activeGameId = games[0]?.id || ""
@@ -22,61 +21,41 @@ function renderSpotlight(game) {
 
   spotlightFrame.innerHTML = `
     <article class="command-deck" style="--accent:${game.accent}; --glow:${game.glow};">
-      <div class="deck-head">
-        <span class="deck-label">ACTIVE SYSTEM</span>
-        <strong>${escapeHtml(game.title)}</strong>
+      <div class="deck-copy">
+        <div class="deck-head">
+          <span class="deck-label">ÖNE ÇIKAN SİSTEM</span>
+          <strong>${escapeHtml(game.title)}</strong>
+        </div>
+
+        <span class="eyebrow-chip">${escapeHtml(game.eyebrow)}</span>
+        <p>${escapeHtml(game.hook)}</p>
+
+        <div class="deck-metrics">
+          ${game.metrics
+            .map(
+              (metric) => `
+                <article>
+                  <span>${escapeHtml(metric.label)}</span>
+                  <strong>${escapeHtml(metric.value)}</strong>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+
+        <div class="deck-actions">
+          <a class="button button-primary" href="${gameHref(game)}">Detay sayfası</a>
+          <a class="button button-secondary" href="${escapeHtml(game.buyUrl || window.LIVEPLAY_PROFILE_URL || "#")}" target="_blank" rel="noreferrer">
+            ${escapeHtml(game.buyLabel || "İlanı aç")}
+          </a>
+        </div>
       </div>
 
       <div class="deck-media media-shell media-fit-${game.homeFit}" style="--preview:url('${game.homeImage}')">
         <img src="${game.homeImage}" alt="${escapeHtml(game.title)} önizleme görseli" />
       </div>
-
-      <div class="deck-copy">
-        <span class="eyebrow-chip">${escapeHtml(game.eyebrow)}</span>
-        <p>${escapeHtml(game.hook)}</p>
-      </div>
-
-      <div class="deck-metrics">
-        ${game.metrics
-          .map(
-            (metric) => `
-              <article>
-                <span>${escapeHtml(metric.label)}</span>
-                <strong>${escapeHtml(metric.value)}</strong>
-              </article>
-            `,
-          )
-          .join("")}
-      </div>
-
-      <div class="deck-actions">
-        <a class="button button-primary" href="${gameHref(game)}">Ürün sayfası</a>
-        <a class="button button-secondary" href="${escapeHtml(game.buyUrl || window.LIVEPLAY_PROFILE_URL || "#")}" target="_blank" rel="noreferrer">
-          ${escapeHtml(game.buyLabel || "İlanı aç")}
-        </a>
-      </div>
     </article>
   `
-}
-
-function renderSwitcher() {
-  if (!spotlightSwitcher) return
-
-  spotlightSwitcher.innerHTML = games
-    .map(
-      (game) => `
-        <button
-          class="switch-card ${game.id === activeGameId ? "is-active" : ""}"
-          type="button"
-          data-switch-game="${escapeHtml(game.id)}"
-          style="--accent:${game.accent}; --glow:${game.glow};"
-        >
-          <span>${escapeHtml(game.eyebrow)}</span>
-          <strong>${escapeHtml(game.title)}</strong>
-        </button>
-      `,
-    )
-    .join("")
 }
 
 function renderSystems() {
@@ -120,21 +99,6 @@ function renderSystems() {
     .join("")
 }
 
-function bindSwitcher() {
-  spotlightSwitcher?.querySelectorAll("[data-switch-game]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const nextId = button.getAttribute("data-switch-game") || ""
-      const nextGame = games.find((game) => game.id === nextId)
-      if (!nextGame) return
-
-      activeGameId = nextGame.id
-      renderSpotlight(nextGame)
-      renderSwitcher()
-      bindSwitcher()
-    })
-  })
-}
-
 function bindPageTransitions() {
   document.querySelectorAll('a[href]').forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -172,9 +136,7 @@ function bootReveals() {
 function init() {
   const current = games.find((game) => game.id === activeGameId) || games[0]
   renderSpotlight(current)
-  renderSwitcher()
   renderSystems()
-  bindSwitcher()
   bindPageTransitions()
   bootReveals()
 }
