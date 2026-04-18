@@ -5,328 +5,198 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="YouTube yayinlarini sohbet, super chat ve hediye aksiyonlariyla oyuna donusturen canli yayin scriptleri."
+      content="YouTube, Twitch ve TikTok yayınlarını bağış, sohbet ve komutlarla oyuna çeviren LivePlay vitrin sitesi."
     />
-    <meta name="theme-color" content="#05060a" />
-    <title>LivePlay</title>
+    <meta name="theme-color" content="#070911" />
+    <title>LivePlay | Yayınını Oyuna Çevir</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oxanium:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./games-data.js"></script>
+    <script defer src="./script.js"></script>
   </head>
-  <body>
-    <a class="skip-link" href="#hero">Icerige gec</a>
-    <div class="ambient ambient-a"></div>
-    <div class="ambient ambient-b"></div>
-    <div class="ambient ambient-c"></div>
-    <div class="scan-grid"></div>
-    <div class="grain"></div>
+  <body class="page-home">
+    <a class="skip-link" href="#anaIcerik">İçeriğe geç</a>
+    <div class="bg-layer bg-layer-a"></div>
+    <div class="bg-layer bg-layer-b"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
     <div class="cursor-glow"></div>
 
-    <header class="topbar">
-      <a class="brand" href="#hero">
-        <span class="brand-core">LP</span>
-        <span class="brand-wordmark">LIVEPLAY</span>
+    <header class="site-header">
+      <a class="brand" href="./index.html">
+        <span class="brand-mark">LP</span>
+        <span class="brand-copy">
+          <strong>LivePlay</strong>
+          <small>Yayın içi oyun sistemleri</small>
+        </span>
       </a>
 
-      <nav class="nav-links">
-        <a href="#scripts">Scriptler</a>
-        <a href="#showcase">Sahne</a>
-        <a href="#power">Gucler</a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <a href="#mekanikler">Mekanikler</a>
+        <a href="#oyunlar">Oyunlar</a>
+        <a href="#kurulum">Kurulum</a>
       </nav>
+
+      <a class="nav-cta" href="#oyunlar">Demoları Aç</a>
     </header>
 
-    <main>
-      <section class="hero" id="hero">
+    <main id="anaIcerik">
+      <section class="hero-board">
         <div class="hero-copy reveal">
-          <span class="live-chip">
-            <span class="live-dot"></span>
-            YAYIN AKTIF
+          <span class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            CANLI YAYIN MOTORU
           </span>
 
           <h1>
-            SOHBET YAZ.
-            <span>EKRAN PATLASIN.</span>
+            SOHBETİ
+            <span>OYUN MEKANİĞİNE</span>
+            ÇEVİR.
           </h1>
 
-          <p>
-            Super Chat, hediyeler, komutlar, cevaplar, takim secimleri ve wheel etkileri.
-            Izleyici ne yaparsa yayin onun etrafinda sekillenir.
+          <p class="hero-description">
+            Super Chat, hediye, takım seçimi, çark, skor tablosu, quiz ve komut
+            akışlarını yayın ekranının merkezine taşıyan oyun vitrini. Her
+            kartın arkasında yalnızca bir görsel değil, yayın içinde gerçekten
+            nasıl davrandığını gösteren detaylı sahneler var.
           </p>
 
           <div class="hero-actions">
-            <a class="pulse-button" href="#showcase">Scriptleri Kesfet</a>
-            <a class="ghost-button" href="#power">Ekrandaki Etkiler</a>
+            <a class="button button-primary" href="#oyunlar">Oyunları incele</a>
+            <a class="button button-secondary" href="#kurulum">Kurulum akışı</a>
           </div>
 
-          <div class="hero-stats">
+          <div class="hero-stat-strip">
             <article>
-              <strong>CHAT</strong>
-              <span>oyunu yonlendirir</span>
+              <strong>6</strong>
+              <span>oyun vitrini</span>
             </article>
             <article>
-              <strong>SUPER CHAT</strong>
-              <span>gucleri tetikler</span>
+              <strong>24+</strong>
+              <span>temiz sahne görseli</span>
             </article>
             <article>
-              <strong>HEDIYELER</strong>
-              <span>sonucu degistirir</span>
+              <strong>OBS</strong>
+              <span>uyumlu akışlar</span>
             </article>
+          </div>
+
+          <div class="hero-bullets">
+            <span>Süper Chat geldiğinde sahne yön değiştirir.</span>
+            <span>Takım oyları, skor ve çark aynı ekranda akar.</span>
+            <span>Kliplik anlar yalnızca izlenmez, tetiklenir.</span>
           </div>
         </div>
 
-        <div class="hero-visual reveal delay-1">
-          <div class="hero-frame hero-frame-main floating-card drift-slow">
-            <img src="./assets/futbol-takim.png" alt="Takimini sohbete yaz ekran goruntusu" />
-            <div class="frame-label">
-              <span>TAKIMINI SOHBETE YAZ</span>
-              <strong>Wheel + Super Chat baskisi</strong>
-            </div>
-          </div>
-
-          <div class="hero-frame hero-frame-side floating-card drift-fast">
-            <img src="./assets/flaggame.png" alt="FlagGame ekran goruntusu" />
-            <div class="frame-label compact">
-              <span>FLAGGAME</span>
-            </div>
-          </div>
-
-          <div class="hero-frame hero-frame-bottom floating-card drift-mid">
-            <img src="./assets/deathnote-clean.png" alt="Death Note Live ekran goruntusu" />
-            <div class="frame-label compact">
-              <span>DEATH NOTE LIVE</span>
-            </div>
-          </div>
+        <div class="hero-stage reveal delay-1">
+          <div class="featured-monitor" id="featuredMonitor"></div>
+          <div class="hero-rail" id="heroMiniRail"></div>
         </div>
       </section>
 
-      <section class="ticker-wrap reveal">
+      <section class="ticker-band reveal" aria-label="Sinyal bandı">
         <div class="ticker-track">
-          <span>SUPER CHAT BOOST</span>
-          <span>HEDIYE SALDIRISI</span>
-          <span>TAKIM SAVASI</span>
-          <span>WHEEL SONUCU</span>
-          <span>QUIZ CEVABI</span>
-          <span>SOHBET KOMUTU</span>
-          <span>RUNTIME PATLAMA</span>
-          <span>TOP 3 DESTEKCI</span>
-          <span>SUPER CHAT BOOST</span>
-          <span>HEDIYE SALDIRISI</span>
-          <span>TAKIM SAVASI</span>
-          <span>WHEEL SONUCU</span>
+          <span>SUPER CHAT REAKSİYONU</span>
+          <span>OY GELİNCE BAR PATLAMASI</span>
+          <span>ÇARK DÖNERKEN GERİLİM</span>
+          <span>QUIZ TOP 3 PANELİ</span>
+          <span>KOMUTLA KAOS AKIŞI</span>
+          <span>CANLI YAYINDA KLİPLİK AN</span>
+          <span>SUPER CHAT REAKSİYONU</span>
+          <span>OY GELİNCE BAR PATLAMASI</span>
+          <span>ÇARK DÖNERKEN GERİLİM</span>
+          <span>QUIZ TOP 3 PANELİ</span>
         </div>
       </section>
 
-      <section class="power-grid" id="power">
-        <article class="power-card reveal">
-          <span class="power-index">01</span>
-          <h2>YORUM YAZAN SADECE YAZMAZ</h2>
-          <p>Her yorum, her cevap, her takim secimi oyuna bir hamle olarak geri doner.</p>
+      <section class="systems-grid" id="mekanikler">
+        <article class="system-card reveal">
+          <span class="system-index">01</span>
+          <h2>Anlık tetik</h2>
+          <p>
+            Yorum, bağış ya da komut geldiği anda sahne pasif kalmaz. Çark,
+            skor, konfeti, sonuç kartı veya fiziksel etki devreye girer.
+          </p>
         </article>
 
-        <article class="power-card reveal delay-1">
-          <span class="power-index">02</span>
-          <h2>SUPER CHAT EKRANDA AGIRLIK KOYAR</h2>
-          <p>Puan, cark, liderlik, booster ve karar anlari destek geldigi anda yone kirilir.</p>
+        <article class="system-card reveal delay-1">
+          <span class="system-index">02</span>
+          <h2>Para görünür olur</h2>
+          <p>
+            Monetization ekrandan taşmaz; yayın ekonomisi doğrudan oyunun
+            temposuna, lider tablosuna ve sonuç üretimine bağlanır.
+          </p>
         </article>
 
-        <article class="power-card reveal delay-2">
-          <span class="power-index">03</span>
-          <h2>HEDIYE GELIRSE SAHNE DEGISIR</h2>
-          <p>Patlama, hiz, komut, ekstra guc, yeni tur veya rakibi ezen anlik etki devreye girer.</p>
+        <article class="system-card reveal delay-2">
+          <span class="system-index">03</span>
+          <h2>Tek bakışta anlaşılır</h2>
+          <p>
+            Yeni gelen izleyici bile ne yapacağını hemen çözer. Böylece yorum
+            yazma ve katılma eşiği düşük, tekrar etkileşim potansiyeli yüksek
+            kalır.
+          </p>
         </article>
       </section>
 
-      <section class="showcase-head reveal" id="showcase">
-        <span class="section-chip">CANLI YAYIN SCRIPT SAHNESI</span>
-        <h2>EKRANA BAK VE HANGI FORMATIN YAYINA EN COK YAKISTIGINI SEC</h2>
+      <section class="section-head reveal">
+        <span class="eyebrow">OYUN VİTRİNİ</span>
+        <h2>Her kart yalnızca bir afiş değil, yayın içinde çalışan bir sahne</h2>
+        <p>
+          Kartlara tıkla; oyunların tüm özelliklerini, kurulum mantığını ve
+          yayın sırasında hangi anlarda nasıl göründüğünü ayrı sayfada incele.
+        </p>
       </section>
 
-      <section class="mosaic" id="scripts">
-        <article class="mosaic-card card-wide reveal tilt-zone" data-game="takim">
-          <div class="mosaic-media fit-top">
-            <img src="./assets/futbol-takim.png" alt="Takimini sohbete yaz" />
-          </div>
-          <div class="mosaic-copy">
-            <div class="tag-row">
-              <span>Takim secimi</span>
-              <span>Super Chat</span>
-              <span>Sans carki</span>
-            </div>
-            <h3>TAKIMINI SOHBETE YAZ</h3>
-            <p>
-              Tribun savasi acilir. Izleyici takim adini yazar, destek gonderir, cark dondurur ve tur tablosunun yonu bir anda degisir.
-            </p>
-            <button class="detail-trigger" type="button" data-open-game="takim">Spotlight Ac</button>
-          </div>
+      <section class="game-grid" id="oyunlar" aria-label="Oyun listesi"></section>
+
+      <section class="story-grid" id="kurulum">
+        <article class="story-panel reveal">
+          <span class="eyebrow">KURULUM AKIŞI</span>
+          <h2>OBS kaynağına at, sahneyi aç, izleyiciyi oynat</h2>
+          <ol class="story-list">
+            <li>Oyunun uygun penceresini ya da browser source bağlantısını aç.</li>
+            <li>Yayın başında takım, quiz veya komut modunu seç.</li>
+            <li>İzleyici etkileşimi geldikçe sahnenin ritmi kendini üretir.</li>
+          </ol>
         </article>
 
-        <article class="mosaic-card reveal tilt-zone" data-game="arena">
-          <div class="mosaic-media fit-center dark-frame">
-            <img src="./assets/mars-bagisli.png" alt="Futbol Arena 3D Pro" />
-          </div>
-          <div class="mosaic-copy">
-            <div class="tag-row">
-              <span>Gift akisi</span>
-              <span>Canli arena</span>
+        <article class="story-panel story-panel-alt reveal delay-1">
+          <span class="eyebrow">NEDEN ÇALIŞIR?</span>
+          <h2>Çünkü yalnızca dekor değil, karar anı üretir</h2>
+          <div class="metric-stack">
+            <div>
+              <strong>Rekabet</strong>
+              <span>Takım oyları, skor sıraları ve son tur kazanları</span>
             </div>
-            <h3>FUTBOL ARENA 3D PRO</h3>
-            <p>
-              TikTok, Twitch ve YouTube destegiyle bagislari puana ve takim baskisina ceviren arena ekrani.
-            </p>
-            <button class="detail-trigger" type="button" data-open-game="arena">Spotlight Ac</button>
-          </div>
-        </article>
-
-        <article class="mosaic-card reveal tilt-zone" data-game="flaggame">
-          <div class="mosaic-media fit-flag">
-            <img src="./assets/flaggame.png" alt="FlagGame" />
-          </div>
-          <div class="mosaic-copy">
-            <div class="tag-row">
-              <span>Tahmin</span>
-              <span>Survival</span>
+            <div>
+              <strong>Ödül hissi</strong>
+              <span>Super Chat sonrası görünür etki ve anlık avantaj</span>
             </div>
-            <h3>FLAGGAME</h3>
-            <p>
-              Son kalan bayrak icin sohbeti tek bir hedefe kilitleyen, izleyen herkesin sonuc bekledigi hizli survival format.
-            </p>
-            <button class="detail-trigger" type="button" data-open-game="flaggame">Spotlight Ac</button>
-          </div>
-        </article>
-
-        <article class="mosaic-card reveal tilt-zone" data-game="quiz">
-          <div class="mosaic-media fit-quiz">
-            <img src="./assets/bilgiguncel-clean.png" alt="Bilgi Yarismasi" />
-          </div>
-          <div class="mosaic-copy">
-            <div class="tag-row">
-              <span>Quiz</span>
-              <span>Zaman</span>
-              <span>Top 3</span>
+            <div>
+              <strong>Tekrar katılım</strong>
+              <span>Her tur yeni giriş noktası, yeni klip, yeni bahis</span>
             </div>
-            <h3>BILGI YARISMASI</h3>
-            <p>
-              Cevap yazanlar yarisa girer. Sure akar, skor siralanir, destek verenler ustte parlar.
-            </p>
-            <button class="detail-trigger" type="button" data-open-game="quiz">Spotlight Ac</button>
-          </div>
-        </article>
-
-        <article class="mosaic-card reveal tilt-zone" data-game="deathnote">
-          <div class="mosaic-media fit-deathnote dark-frame">
-            <img src="./assets/deathnote-clean.png" alt="Death Note Live" />
-          </div>
-          <div class="mosaic-copy">
-            <div class="tag-row">
-              <span>Typing</span>
-              <span>Desktop</span>
-            </div>
-            <h3>DEATH NOTE LIVE</h3>
-            <p>
-              Chat akisini oyunun icine yazan masaustu deneyimi. Mesaj geldikce gerilim daha da yogunlasir.
-            </p>
-            <button class="detail-trigger" type="button" data-open-game="deathnote">Spotlight Ac</button>
-          </div>
-        </article>
-
-        <article class="mosaic-card reveal tilt-zone" data-game="pickaxe">
-          <div class="mosaic-media fit-pickaxe dark-frame">
-            <img src="./assets/falling-pickaxe.png" alt="Falling Pickaxe" />
-          </div>
-          <div class="mosaic-copy">
-            <div class="tag-row">
-              <span>Pygame</span>
-              <span>Komut</span>
-              <span>Kaos</span>
-            </div>
-            <h3>FALLING PICKAXE</h3>
-            <p>
-              Komutlarla pickaxe dusur, TNT yagdir, sahneyi boz, oyunun ritmini tek satirla degistir.
-            </p>
-            <button class="detail-trigger" type="button" data-open-game="pickaxe">Spotlight Ac</button>
           </div>
         </article>
       </section>
 
-      <section class="compatibility-band reveal">
-        <span>OBS Browser Source Hazir</span>
-        <span>Kolay Kurulum Akisi</span>
-        <span>Dusuk Esik, Yuksek Etki</span>
-        <span>Her Yorum Ekrana Dokunur</span>
-      </section>
-
-      <section class="money-stage reveal">
-        <div class="money-copy">
-          <span class="section-chip">MONETIZATION MOMENT</span>
-          <h2>DESTEK GELINCE SADECE UYARI DEGIL, OYUNUN GUC DENGESI DE DEGISIR</h2>
+      <section class="cta-panel reveal">
+        <div>
+          <span class="eyebrow">SAHNE HAZIR</span>
+          <h2>Yayın açıldığında sohbet yalnızca izlemez. Oynar.</h2>
         </div>
-        <div class="money-wall">
-          <span>10 TL +50</span>
-          <span>50 TL +400</span>
-          <span>100 TL +1000</span>
-          <span>GIFT = ETKI</span>
-          <span>CHAT = HAMLE</span>
-          <span>WHEEL = KRITIK AN</span>
-        </div>
-      </section>
-
-      <section class="final-banner reveal">
-        <div class="final-copy">
-          <span class="section-chip">SAHNE HAZIR</span>
-          <h2>YAYIN ACILDIGINDA SOHBET SADECE IZLEMEZ. OYNAR.</h2>
-        </div>
+        <a class="button button-primary" href="#oyunlar">Detay sayfalarına geç</a>
       </section>
     </main>
 
-    <div class="detail-overlay" id="detailOverlay" hidden>
-      <div class="detail-backdrop" data-close-detail></div>
-      <section class="detail-panel" aria-modal="true" role="dialog" aria-labelledby="detailTitle">
-        <button class="detail-close" type="button" data-close-detail aria-label="Detay penceresini kapat">Kapat</button>
-        <div class="detail-hero">
-          <div class="detail-title-wrap">
-            <span class="section-chip" id="detailEyebrow">SCRIPT SPOTLIGHT</span>
-            <h2 id="detailTitle"></h2>
-            <p id="detailLead"></p>
-          </div>
-          <div class="detail-impact">
-            <article>
-              <span>Kurulum</span>
-              <strong id="detailSetup"></strong>
-            </article>
-            <article>
-              <span>Uyumluluk</span>
-              <strong id="detailCompat"></strong>
-            </article>
-            <article>
-              <span>Yayina Etki</span>
-              <strong id="detailImpact"></strong>
-            </article>
-          </div>
-        </div>
-
-        <div class="detail-gallery" id="detailGallery"></div>
-
-        <div class="detail-grid">
-          <article class="detail-card">
-            <span class="detail-card-label">Nasil Kurulur</span>
-            <p id="detailInstall"></p>
-          </article>
-          <article class="detail-card">
-            <span class="detail-card-label">Yayinda Neler Olur</span>
-            <p id="detailStream"></p>
-          </article>
-          <article class="detail-card detail-card-wide">
-            <span class="detail-card-label">Neden Bu Kadar Iyi Calisir</span>
-            <ul id="detailBullets" class="detail-bullets"></ul>
-          </article>
-        </div>
-      </section>
-    </div>
-
-    <script src="./script.js"></script>
+    <footer class="site-footer">
+      <p>LivePlay demo vitrini. Tüm görseller yalnızca oyunu gösterecek şekilde temizlenmiştir.</p>
+    </footer>
   </body>
 </html>
