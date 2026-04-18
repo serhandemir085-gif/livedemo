@@ -4,12 +4,14 @@ const cursorGlow = document.querySelector(".cursor-glow")
 const gameGrid = document.querySelector(".game-grid")
 const featuredMonitor = document.querySelector("#featuredMonitor")
 const heroMiniRail = document.querySelector("#heroMiniRail")
+const growthMatrix = document.querySelector("#growthMatrix")
+const creatorVoice = document.querySelector("#creatorVoice")
 
 let featuredIndex = 0
 let featuredTimer = null
 
 function escapeHtml(value) {
-  return value
+  return String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -18,6 +20,18 @@ function escapeHtml(value) {
 
 function renderFeatured(game) {
   if (!featuredMonitor) return
+
+  const signalMarkup = (game.growthMap || [])
+    .slice(0, 2)
+    .map(
+      (item) => `
+        <article class="pulse-chip">
+          <span>${escapeHtml(item.label)}</span>
+          <strong>${escapeHtml(item.value)}</strong>
+        </article>
+      `,
+    )
+    .join("")
 
   document.documentElement.style.setProperty("--page-accent", game.accent)
   document.documentElement.style.setProperty("--page-glow", game.glow)
@@ -36,6 +50,10 @@ function renderFeatured(game) {
         <p class="feature-label">${escapeHtml(game.heroLabel)}</p>
         <h2>${escapeHtml(game.title)}</h2>
         <p>${escapeHtml(game.teaser)}</p>
+
+        <div class="feature-pulse-row">
+          ${signalMarkup}
+        </div>
 
         <div class="metric-row">
           ${game.metrics
@@ -88,7 +106,62 @@ function renderMiniRail() {
     .join("")
 }
 
+function renderGrowthMatrix(game) {
+  if (!growthMatrix) return
+
+  const growthMap = game.growthMap || []
+  const audienceFlow = game.audienceFlow || []
+
+  growthMatrix.innerHTML = `
+    <article class="growth-card growth-card--intro" style="--accent:${game.accent}; --glow:${game.glow};">
+      <span>Keşfet vaadi</span>
+      <strong>${escapeHtml(game.growthLead || game.heroLabel)}</strong>
+      <p>${escapeHtml(audienceFlow[0] || game.teaser)}</p>
+    </article>
+
+    ${growthMap
+      .map(
+        (item) => `
+          <article class="growth-card" style="--accent:${game.accent}; --glow:${game.glow};">
+            <span>${escapeHtml(item.label)}</span>
+            <strong>${escapeHtml(item.value)}</strong>
+          </article>
+        `,
+      )
+      .join("")}
+  `
+}
+
+function renderCreatorVoice(game) {
+  if (!creatorVoice) return
+
+  const creatorLines = game.creatorLines || []
+  const audienceFlow = game.audienceFlow || []
+
+  creatorVoice.innerHTML = `
+    <div class="voice-layout">
+      <article class="voice-panel" style="--accent:${game.accent}; --glow:${game.glow};">
+        <span class="panel-label">Sunucunun açılış cümleleri</span>
+        <h2>${escapeHtml(game.title)} ile sohbeti ilk saniyede oyuna sok</h2>
+        <ol class="quote-list">
+          ${creatorLines.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}
+        </ol>
+      </article>
+
+      <article class="voice-panel voice-panel-secondary" style="--accent:${game.accent}; --glow:${game.glow};">
+        <span class="panel-label">İzleyiciyi neden tutar?</span>
+        <p class="voice-lead">${escapeHtml(game.growthLead || game.teaser)}</p>
+        <ul class="pulse-list">
+          ${audienceFlow.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+      </article>
+    </div>
+  `
+}
+
 function createCard(game) {
+  const hookValue = game.growthMap?.[0]?.value || game.heroLabel
+
   return `
     <a
       class="game-card game-card--${game.size} tilt-zone reveal"
@@ -108,6 +181,11 @@ function createCard(game) {
 
         <h3>${escapeHtml(game.title)}</h3>
         <p>${escapeHtml(game.description)}</p>
+
+        <div class="card-hook">
+          <span>Keşfet kancası</span>
+          <strong>${escapeHtml(hookValue)}</strong>
+        </div>
 
         <div class="card-metrics">
           ${game.metrics
@@ -138,8 +216,11 @@ function renderGameGrid() {
 
 function setFeatured(index) {
   featuredIndex = index
-  renderFeatured(games[featuredIndex])
+  const featuredGame = games[featuredIndex]
+  renderFeatured(featuredGame)
   renderMiniRail()
+  renderGrowthMatrix(featuredGame)
+  renderCreatorVoice(featuredGame)
   bindTiltZones()
   bindMiniRail()
 }

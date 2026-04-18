@@ -475,6 +475,140 @@ window.LIVEPLAY_GAMES = [
   },
 ]
 
+const STORY_PACKS = {
+  takim: {
+    growthLead:
+      "Takımını Sohbete Yaz, taraf seçtirdiği için yorumu ilk saniyede başlatır; Super Chat ve çark sayesinde her turu kliplik final anına çevirir.",
+    growthMap: [
+      { label: "3 saniyelik kanca", value: "Takımını yaz ve tarafını seç." },
+      { label: "Yorum motoru", value: "Her yeni oy, skor barlarını gözle görülür biçimde iter." },
+      { label: "Klip anı", value: "Çark döndüğünde bütün yayın tek karede gerilir." },
+      { label: "Geri dönüş nedeni", value: "Her turda yeni lider, yeni bonus ve yeni hesaplaşma vardır." },
+    ],
+    creatorLines: [
+      "Sohbete takımını yaz, bu turun tribünü kimde görelim.",
+      "Super Chat gelirse çark açılıyor; tek destek bütün tabloyu çevirebilir.",
+      "Son saniyelerde barı öne taşıyan takım spotlight'ı kapacak.",
+    ],
+    audienceFlow: [
+      "Taraf tutma duygusu izleyiciyi pasif izleyici olmaktan çıkarır.",
+      "Skor barlarının canlı değişmesi ekrana bakma süresini uzatır.",
+      "Çark ve sonuç kartı doğal paylaşılabilir final sahnesi üretir.",
+      "Her yeni tur, kaçıran kişiye yeniden katılma bahanesi verir.",
+    ],
+  },
+  arena: {
+    growthLead:
+      "Futbol Arena 3D Pro, bağışın skora çevrildiğini tek bakışta gösterdiği için hızlı anlaşılır ve kısa rekabet segmentlerinde güçlü çalışır.",
+    growthMap: [
+      { label: "İlk görüntü", value: "Skor ve takım kartları anında rekabet hissi verir." },
+      { label: "Bağış etkisi", value: "Destek doğrudan puana döndüğü için neden bağışlandığı nettir." },
+      { label: "Tempo", value: "Kısa turlar sayesinde yayın ritmi düşmez." },
+      { label: "Geri dönüş nedeni", value: "Yeni destek geldiğinde skor dengesi bir anda değişebilir." },
+    ],
+    creatorLines: [
+      "Bu tur hangi takım baskı kuracak, desteği ona göre yağdırın.",
+      "Bir bağış oyunun bütün yönünü çevirebilir; skora dikkat edin.",
+      "Sürenin sonuna kadar lider değişirse yeni tur direkt daha sert açılacak.",
+    ],
+    audienceFlow: [
+      "Skor düzeni sade olduğu için mobil izleyici bile hızlıca oyuna girer.",
+      "Bağışın soyut kalmaması, destek çağrısını daha inandırıcı yapar.",
+      "Takım kartları rekabeti kişiselleştirir ve taraf yaratır.",
+      "Kısa format olması, art arda birkaç tur oynanmasını kolaylaştırır.",
+    ],
+  },
+  flaggame: {
+    growthLead:
+      "FlagGame sadeliğiyle keşfette çalışır; yeni gelen izleyici mantığı saniyesinde çözer ve kazanan bayrağı tahmin etmek ister.",
+    growthMap: [
+      { label: "İlk görüntü", value: "Merkez havuz ve kalan bayraklar tek bakışta anlaşılır." },
+      { label: "Yorum motoru", value: "İzleyici favori bayrağını seçip tahminini savunur." },
+      { label: "Klip anı", value: "Son birkaç bayrak kaldığında doğal gerilim tavan yapar." },
+      { label: "Geri dönüş nedeni", value: "Her yeni tur farklı favori ve farklı final üretir." },
+    ],
+    creatorLines: [
+      "Sona hangi bayrak kalacak, şimdi yorumlara ülkenizi yazın.",
+      "Son üçe kalınca sohbeti kaplayan ülke gerçekten güçlü demektir.",
+      "Bu finali kaçırmayın; son kalan bayrak bir anda her şeyi tersine çevirebilir.",
+    ],
+    audienceFlow: [
+      "Kuralların aşırı basit olması, keşfetten gelen kişiyi de hemen dahil eder.",
+      "Tahmin kültürü yorum yazmayı doğal hale getirir.",
+      "Sonlara doğru oluşan sessiz gerilim izleme süresini uzatır.",
+      "Kısa sürmesi, tekrar tekrar oynanarak içerik hacmi üretmesini sağlar.",
+    ],
+  },
+  quiz: {
+    growthLead:
+      "Bilgi Yarışması aktif soru ekranıyla açıldığı için bekletmez; cevap baskısı, skor tablosu ve Top 3 desteğiyle sürekli mikro-final üretir.",
+    growthMap: [
+      { label: "İlk görüntü", value: "Soru, sayaç ve seçenekler aynı anda karar baskısı kurar." },
+      { label: "Yorum motoru", value: "A-B-C-D yazmak kadar düşük eşikli bir giriş sunar." },
+      { label: "Klip anı", value: "Süre biterken doğru cevap ve sıralama patlar." },
+      { label: "Geri dönüş nedeni", value: "Her yeni soru yeni bir mini final gibi davranır." },
+    ],
+    creatorLines: [
+      "Süre akıyor, doğru şıkkı şimdi yorumlara bırakın.",
+      "En hızlı cevap verenler yukarı çıkacak; geç kalırsanız tabloyu kaçırırsınız.",
+      "Super Chat desteği Top 3'ü değiştirirse bu soru tamamen başka yere gider.",
+    ],
+    audienceFlow: [
+      "Cevap girişi çok kolay olduğu için yeni gelenler de hızlı katılır.",
+      "Sayaç yüzünden izleyici ekrandan kolay kopamaz.",
+      "Skor tablosu rekabet duygusunu soru bittiğinde de taşır.",
+      "Arka arkaya sorular yayın içinde doğal seri etkisi oluşturur.",
+    ],
+  },
+  deathnote: {
+    growthLead:
+      "Death Note Live, niş estetiği sayesinde thumb-stop etkisi üretir; yayın içinde farklı görünmek isteyen kanallar için atmosfer üzerinden merak toplar.",
+    growthMap: [
+      { label: "İlk görüntü", value: "Boş sayfa ve karanlık üst bant anında dikkat çeker." },
+      { label: "Merak motoru", value: "İzleyici bu sahnenin nereye evrileceğini görmek ister." },
+      { label: "Klip anı", value: "Kalem ve sayfa hareketi kısa kesitte bile akılda kalır." },
+      { label: "Geri dönüş nedeni", value: "Sıradan oyun ekranlarına benzemediği için hafızada kalır." },
+    ],
+    creatorLines: [
+      "Bu sayfaya birazdan ne yazılacağını yorumlarla siz belirleyeceksiniz.",
+      "Sahne sakin görünüyor ama bir sonraki kelime bütün tonu değiştirecek.",
+      "Bu anı kaçırmayın; yazı geldiğinde ekranın hissi tamamen dönüşecek.",
+    ],
+    audienceFlow: [
+      "Niş estetik, yayını benzer içeriklerden ayırır.",
+      "Minimal sahne kalabalık üretmeden dikkat toplar.",
+      "Gerilim hissi izleyicinin merakını daha uzun tutar.",
+      "Kısa kliplerde bile farklı tonu sayesinde seçilebilir kalır.",
+    ],
+  },
+  pickaxe: {
+    growthLead:
+      "Falling Pickaxe saf kaos hissi verdiği için keşfette hızlı dikkat çeker; komutun ekranda fiziksel sonuç üretmesi izleyiciyi tekrar tekrar denemeye iter.",
+    growthMap: [
+      { label: "İlk görüntü", value: "Tüm oyun alanı tek karede arcade kaosu gibi görünür." },
+      { label: "Yorum motoru", value: "Komut atıldığında ekranda gerçek fiziksel tepki oluşur." },
+      { label: "Klip anı", value: "Pickaxe düşüşü ve yüzey kırılması kolay paylaşılır an üretir." },
+      { label: "Geri dönüş nedeni", value: "Bir sonraki komutun ne bozacağını herkes görmek ister." },
+    ],
+    creatorLines: [
+      "Komutu yazın, pickaxe'i birazdan hep beraber aşağı salıyoruz.",
+      "Bu zemini kim bozacak görelim; tek komut oyunu tamamen çirkinleştirebilir.",
+      "Bir sonraki düşüş kliplik olabilir, komut yağdırmayı kesinlikle bırakmayın.",
+    ],
+    audienceFlow: [
+      "Komutla fiziksel sonuç almak izleyiciyi oyunun ortağı gibi hissettirir.",
+      "Ekrandaki kaos her saniye yeni görsel varyasyon üretir.",
+      "Meme potansiyeli yüksek olduğu için klip alma isteği doğal yükselir.",
+      "Tam oyun alanının görünmesi, izleyicinin neyi etkilediğini açıkça göstermesini sağlar.",
+    ],
+  },
+}
+
+window.LIVEPLAY_GAMES = window.LIVEPLAY_GAMES.map((game) => ({
+  ...game,
+  ...(STORY_PACKS[game.id] || {}),
+}))
+
 window.LIVEPLAY_LOOKUP = Object.fromEntries(
   window.LIVEPLAY_GAMES.map((game) => [game.id, game]),
 )

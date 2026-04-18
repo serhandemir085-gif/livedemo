@@ -6,7 +6,7 @@ const lightboxClose = document.querySelector("#lightboxClose")
 const cursorGlowDetail = document.querySelector(".cursor-glow")
 
 function escapeHtml(value) {
-  return value
+  return String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -32,6 +32,10 @@ function renderNotFound() {
 
 function renderDetail(game) {
   if (!detailRoot) return
+
+  const growthMap = game.growthMap || []
+  const creatorLines = game.creatorLines || []
+  const audienceFlow = game.audienceFlow || []
 
   document.title = `LivePlay | ${game.title}`
   document.documentElement.style.setProperty("--page-accent", game.accent)
@@ -89,6 +93,47 @@ function renderDetail(game) {
           ${game.reasons.map((reason) => `<span>${escapeHtml(reason)}</span>`).join("")}
         </div>
       </article>
+    </section>
+
+    <section class="magnet-board reveal">
+      <div class="section-head section-head-inline">
+        <span class="eyebrow">KEŞFET PROFİLİ</span>
+        <h2>Bu oyun YouTube keşfetinde neden dikkat çeker?</h2>
+        <p>${escapeHtml(game.growthLead || game.teaser)}</p>
+      </div>
+
+      <div class="growth-grid growth-grid-detail">
+        ${growthMap
+          .map(
+            (item) => `
+              <article class="growth-card" style="--accent:${game.accent}; --glow:${game.glow};">
+                <span>${escapeHtml(item.label)}</span>
+                <strong>${escapeHtml(item.value)}</strong>
+              </article>
+            `,
+          )
+          .join("")}
+      </div>
+    </section>
+
+    <section class="voice-board voice-board-detail reveal">
+      <div class="voice-layout">
+        <article class="voice-panel" style="--accent:${game.accent}; --glow:${game.glow};">
+          <span class="panel-label">Sunucunun açılış cümleleri</span>
+          <h2>${escapeHtml(game.title)} ile sohbeti ilk saniyede oyuna sok</h2>
+          <ol class="quote-list">
+            ${creatorLines.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}
+          </ol>
+        </article>
+
+        <article class="voice-panel voice-panel-secondary" style="--accent:${game.accent}; --glow:${game.glow};">
+          <span class="panel-label">İzleyiciyi neden geri çağırır?</span>
+          <p class="voice-lead">${escapeHtml(game.growthLead || game.description)}</p>
+          <ul class="pulse-list">
+            ${audienceFlow.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+          </ul>
+        </article>
+      </div>
     </section>
 
     <section class="section-head reveal">
