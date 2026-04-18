@@ -35,6 +35,17 @@ body {
     radial-gradient(circle at 82% 12%, rgba(45, 164, 255, 0.16), transparent 18%),
     radial-gradient(circle at 50% 78%, rgba(255, 70, 133, 0.1), transparent 26%),
     linear-gradient(180deg, #04050d 0%, #070911 45%, #04050b 100%);
+  opacity: 1;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    filter 220ms ease;
+}
+
+body.page-leaving {
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(4px);
 }
 
 body::before {
@@ -264,12 +275,16 @@ section {
   margin-top: 36px;
 }
 
+.page-home section {
+  margin-top: 24px;
+}
+
 .hero-board {
   display: grid;
   grid-template-columns: 0.94fr 1.06fr;
   gap: 28px;
   align-items: center;
-  min-height: calc(100vh - 120px);
+  min-height: min(860px, calc(100vh - 120px));
 }
 
 .eyebrow {
@@ -1018,6 +1033,14 @@ section {
   gap: 18px;
 }
 
+.compact-systems .system-card h2 {
+  font-size: 1.55rem;
+}
+
+.compact-systems .system-card {
+  padding: 22px;
+}
+
 .system-card,
 .feature-card {
   position: relative;
@@ -1184,6 +1207,31 @@ section {
   gap: 20px;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.buy-panel {
+  margin-top: 20px;
+}
+
+.buy-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding: 28px;
+  border-radius: 30px;
+  border: 1px solid color-mix(in srgb, var(--accent, var(--page-accent)) 22%, rgba(255, 255, 255, 0.1));
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--accent, var(--page-accent)) 14%, transparent), transparent 28%),
+    linear-gradient(180deg, rgba(13, 18, 31, 0.96), rgba(7, 10, 18, 0.9));
+  box-shadow: var(--shadow-xl);
+}
+
+.buy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
 }
 
 .site-footer {
@@ -1472,6 +1520,7 @@ section {
   .hero-board,
   .discovery-grid,
   .detail-hero,
+  .buy-card,
   .story-grid,
   .detail-columns,
   .feature-grid,
@@ -1566,6 +1615,7 @@ section {
   .game-card,
   .story-panel,
   .detail-panel,
+  .buy-card,
   .discovery-panel,
   .voice-panel,
   .gallery-card,

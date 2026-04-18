@@ -107,6 +107,25 @@ function renderDetail(game) {
       </div>
     </section>
 
+    <section class="buy-panel reveal">
+      <article class="buy-card" style="--accent:${game.accent}; --glow:${game.glow};">
+        <div>
+          <span class="panel-label">Satın alma alanı</span>
+          <h2>${escapeHtml(game.title)} için ilgili ilana geç</h2>
+          <p class="detail-description">${escapeHtml(game.offerSummary || game.growthLead || game.description)}</p>
+        </div>
+
+        <div class="buy-actions">
+          <a class="button button-primary" href="${escapeHtml(game.buyUrl || window.LIVEPLAY_PROFILE_URL || "#")}" target="_blank" rel="noreferrer">
+            ${escapeHtml(game.buyLabel || "İlana git")}
+          </a>
+          <a class="button button-secondary" href="${escapeHtml(window.LIVEPLAY_PROFILE_URL || "#")}" target="_blank" rel="noreferrer">
+            CodeHub profili
+          </a>
+        </div>
+      </article>
+    </section>
+
     <section class="detail-columns">
       <article class="detail-panel reveal">
         <span class="panel-label">Kurulum mantığı</span>
@@ -342,6 +361,24 @@ function bindLightbox() {
   })
 }
 
+function bindPageTransitions() {
+  document.querySelectorAll('a[href]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const href = link.getAttribute("href") || ""
+      if (!href || href.startsWith("#")) return
+      if (link.target === "_blank") return
+      if (href.startsWith("http")) return
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+
+      event.preventDefault()
+      document.body.classList.add("page-leaving")
+      window.setTimeout(() => {
+        window.location.href = href
+      }, 220)
+    })
+  })
+}
+
 function init() {
   const gameId = getGameId()
   const game = window.LIVEPLAY_LOOKUP?.[gameId]
@@ -355,6 +392,7 @@ function init() {
   bootReveals()
   bindCursorGlow()
   bindLightbox()
+  bindPageTransitions()
 }
 
 init()

@@ -281,12 +281,31 @@ function bindCursorGlow() {
   })
 }
 
+function bindPageTransitions() {
+  document.querySelectorAll('a[href]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const href = link.getAttribute("href") || ""
+      if (!href || href.startsWith("#")) return
+      if (link.target === "_blank") return
+      if (href.startsWith("http")) return
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+
+      event.preventDefault()
+      document.body.classList.add("page-leaving")
+      window.setTimeout(() => {
+        window.location.href = href
+      }, 220)
+    })
+  })
+}
+
 function init() {
   if (!games.length) return
   renderGameGrid()
   setFeatured(0)
   bootReveals()
   bindCursorGlow()
+  bindPageTransitions()
 }
 
 init()

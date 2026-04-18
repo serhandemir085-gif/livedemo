@@ -606,6 +606,8 @@ const STORY_PACKS = {
 
 const COMMERCIAL_PACKS = {
   takim: {
+    buyUrl: "https://www.itemsatis.com/script-satisi/youtube-canli-yayin-takim-oylama-oyunu-4825124.html",
+    buyLabel: "İlanı aç",
     offerSummary:
       "Itemsatış tarafındaki takım oylama ve keşfet scripti diline yakın şekilde bu ürün; yüksek chat, Super Chat tetikleri, çark gerilimi ve yayıncının tek yayında daha fazla bağış görmesini hedefleyen premium yayın motoru gibi konumlanır.",
     marketBullets: [
@@ -622,6 +624,8 @@ const COMMERCIAL_PACKS = {
     ],
   },
   arena: {
+    buyUrl: "https://www.itemsatis.com/script-satisi/premium-1-aylik-canli-yayin-kesfet-scripti-4673070.html",
+    buyLabel: "İlgili keşfet ilanı",
     offerSummary:
       "Futbol Arena 3D Pro, bağışı doğrudan skora çevirdiği için satış sayfasında 'anlaşılır rekabet + görünür gelir etkisi' vurgusuyla öne çıkabilecek bir yayın aracı gibi davranır.",
     marketBullets: [
@@ -638,6 +642,8 @@ const COMMERCIAL_PACKS = {
     ],
   },
   flaggame: {
+    buyUrl: "https://www.itemsatis.com/p/CodeHub",
+    buyLabel: "CodeHub profilinde gör",
     offerSummary:
       "FlagGame sade görünmesine rağmen satış dili açısından 'düşük bariyer, yüksek tahmin dürtüsü, tekrar oynanabilir kısa segment' formülüyle kitle toplamak için güçlü bir ürün gibi konumlanır.",
     marketBullets: [
@@ -654,6 +660,8 @@ const COMMERCIAL_PACKS = {
     ],
   },
   quiz: {
+    buyUrl: "https://www.itemsatis.com/yayincilara-video-hizmeti/canli-yayin-script-4561468.html",
+    buyLabel: "Genel canlı yayın ilanı",
     offerSummary:
       "Bilgi Yarışması, bekleme overlay'i yerine aktif soru ekranıyla açıldığı için satış sayfasında 'hazır etkileşim, hızlı cevap baskısı, skorla geri dönüş' vadeden teknoloji odaklı bir quiz sistemi gibi öne çıkar.",
     marketBullets: [
@@ -670,6 +678,8 @@ const COMMERCIAL_PACKS = {
     ],
   },
   deathnote: {
+    buyUrl: "https://www.itemsatis.com/yayincilara-video-hizmeti/deathnote-otomasyonu-4475955.html",
+    buyLabel: "Deathnote ilanı",
     offerSummary:
       "Death Note Live, klasik yayın oyunlarından ayrılan atmosferi sayesinde satış tarafında 'niş ama çok akılda kalıcı premium sahne' olarak konumlanabilecek estetik odaklı bir deneyim sunar.",
     marketBullets: [
@@ -686,6 +696,8 @@ const COMMERCIAL_PACKS = {
     ],
   },
   pickaxe: {
+    buyUrl: "https://www.itemsatis.com/yayinci-tasarimlari/minecraft-tnt-patlatma-kazma-yayin-scripti-4475428.html",
+    buyLabel: "Minecraft TNT ilanı",
     offerSummary:
       "Minecraft TNT Patlatma ve Kazma scripti ilanlarındaki yaklaşım gibi bu ürün de 'yayın linkini gir, komutları çalıştır, sohbeti canlı oyun alanına çevir' mantığıyla yüksek etkileşimli otomasyon paketi hissi verir.",
     marketBullets: [
@@ -702,6 +714,8 @@ const COMMERCIAL_PACKS = {
     ],
   },
 }
+
+window.LIVEPLAY_PROFILE_URL = "https://www.itemsatis.com/p/CodeHub"
 
 window.LIVEPLAY_GAMES = window.LIVEPLAY_GAMES.map((game) => ({
   ...game,
