@@ -18,3 +18,7 @@ Bu klasor, GitHub'a direkt yuklenebilecek statik tanitim sitesidir.
 ## Not
 
 Sayfadaki gorseller, bu klasordeki zip dosyalarindan cikarilan oyunlardan uretilmistir.
+
+## Alternatif Vitrin
+
+- `liveplay-cinematic-showcase/`: eski surumden bagimsiz, sifirdan tasarlanmis yeni sinematik vitrin
