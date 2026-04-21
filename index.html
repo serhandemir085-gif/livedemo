@@ -3,153 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="LivePlay, YouTube canlı yayınları için etkileşim odaklı oyun, quiz ve komut sistemlerini çok sayfalı yapıda sunar."
-    />
-    <meta name="theme-color" content="#050816" />
-    <title>LivePlay | YouTube Canlı Yayın Sistemleri</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-    <script defer src="./games-data.js"></script>
-    <script defer src="./script.js"></script>
+    <meta http-equiv="refresh" content="0; url=./liveplay-cinematic-showcase/" />
+    <title>LivePlay yönlendiriliyor</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: Arial, sans-serif;
+        background: #050816;
+        color: #f6f7fb;
+      }
+
+      main {
+        width: min(92vw, 640px);
+        padding: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      a {
+        color: #7de7ff;
+      }
+    </style>
+    <script>
+      window.location.replace("./liveplay-cinematic-showcase/");
+    </script>
   </head>
-  <body class="page-home">
-    <a class="skip-link" href="#anaIcerik">İçeriğe geç</a>
-
-    <div class="page-shell">
-      <div class="ambient ambient-a"></div>
-      <div class="ambient ambient-b"></div>
-      <div class="scanlines"></div>
-
-      <header class="site-header">
-        <a class="brand" href="./index.html">
-          <span class="brand-mark">LP</span>
-          <span class="brand-copy">
-            <strong>LivePlay</strong>
-            <small>YouTube canlı yayın sistemleri</small>
-          </span>
-        </a>
-
-        <nav class="site-nav" aria-label="Ana menü">
-          <a href="#urunler">Sistemler</a>
-          <a href="#neden">Neden çalışır</a>
-          <a href="https://www.itemsatis.com/p/CodeHub" target="_blank" rel="noreferrer">CodeHub profil</a>
-        </nav>
-
-        <a class="nav-cta" href="https://www.itemsatis.com/p/CodeHub" target="_blank" rel="noreferrer">
-          İlanları aç
-        </a>
-      </header>
-
-      <main id="anaIcerik">
-        <section class="hero-grid">
-          <div class="hero-copy reveal">
-            <span class="section-kicker">
-              <span class="kicker-dot"></span>
-              YOUTUBE LIVE SYSTEMS
-            </span>
-
-            <h1>
-              İZLEYİCİYİ
-              <span>OYUNUN İÇİNE ÇEKEN</span>
-              CANLI YAYIN SİSTEMLERİ.
-            </h1>
-
-            <p class="hero-text">
-              Takım savaşı, bağış odaklı arena, bilgi yarışması, tahmin ve komut tabanlı
-              oyun akışları. Her sistem canlı yayında nasıl çalıştığını gösteren sahneler,
-              kısa açıklamalar ve detay sayfasıyla birlikte sunulur.
-            </p>
-
-            <div class="hero-actions">
-              <a class="button button-primary" href="#urunler">Sistemleri keşfet</a>
-              <a class="button button-secondary" href="https://www.itemsatis.com/p/CodeHub" target="_blank" rel="noreferrer">
-                Tüm ilanları aç
-              </a>
-            </div>
-
-            <div class="status-band">
-              <article>
-                <span>Deneyim</span>
-                <strong>Çoklu sayfa sistem tanıtımı</strong>
-              </article>
-              <article>
-                <span>Odak</span>
-                <strong>Chat, Super Chat ve etkileşim</strong>
-              </article>
-              <article>
-                <span>Uyumluluk</span>
-                <strong>OBS ve browser source desteği</strong>
-              </article>
-            </div>
-          </div>
-
-          <div class="hero-stage reveal delay-1">
-            <div class="hero-stage-frame" id="spotlightFrame"></div>
-          </div>
-        </section>
-
-        <section class="proof-grid" id="neden">
-          <article class="proof-card reveal">
-            <span class="proof-index">01</span>
-            <h2>Yeni izleyici saniyeler içinde oyuna girer</h2>
-            <p>Kurgu ilk bakışta anlaşılır olduğu için yayına yeni gelen kitle hızlıca katılım gösterir.</p>
-          </article>
-
-          <article class="proof-card reveal delay-1">
-            <span class="proof-index">02</span>
-            <h2>Yorum ve destek görünür etki üretir</h2>
-            <p>Super Chat, skor ve komut etkisi ekranda net görüldüğünde yayın çok daha güçlü hissedilir.</p>
-          </article>
-
-          <article class="proof-card reveal delay-2">
-            <span class="proof-index">03</span>
-            <h2>Her sistem detay sayfasında net açılır</h2>
-            <p>Görseller, modüller, sahne akışı ve satın alma bağlantıları ilgili sistemin kendi sayfasında toplanır.</p>
-          </article>
-        </section>
-
-        <section class="catalog-head reveal">
-          <div>
-            <span class="section-kicker">ÖNE ÇIKAN SİSTEMLER</span>
-            <h2>Yayın tarzına göre sistemi seç</h2>
-          </div>
-          <p>
-            Her kart temel akışı ve kullanım mantığını kısa biçimde gösterir. Detay sayfalarında
-            daha fazla sahne örneği, açıklama ve bağlantı birlikte açılır.
-          </p>
-        </section>
-
-        <section class="system-grid" id="urunler" aria-label="Sistem listesi"></section>
-
-        <section class="profile-panel reveal">
-          <div class="profile-copy">
-            <span class="section-kicker">TÜM İLANLAR</span>
-            <h2>Güncel ilanlara ve satın alma bağlantılarına tek yerden ulaşın</h2>
-            <p>
-              Tüm sistemlerin güncel ilanları, fiyatları ve satın alma bağlantıları CodeHub
-              profilinde toplu halde bulunur.
-            </p>
-          </div>
-
-          <div class="profile-actions">
-            <a class="button button-primary" href="https://www.itemsatis.com/p/CodeHub" target="_blank" rel="noreferrer">
-              İlan sayfasını aç
-            </a>
-            <p>Tek bağlantıyla tüm sistemlere ulaşılabilir.</p>
-          </div>
-        </section>
-      </main>
-
-      <footer class="site-footer">
-        <p>Görseller yalnızca oyun sahnesini gösterecek şekilde hazırlanmıştır.</p>
-      </footer>
-    </div>
+  <body>
+    <main>
+      <h1>Yeni vitrine yönlendiriliyorsunuz.</h1>
+      <p><a href="./liveplay-cinematic-showcase/">Yeni sinematik vitrini aç</a></p>
+      <p><a href="./index-classic.html">Eski vitrini aç</a></p>
+    </main>
   </body>
 </html>
