@@ -22,4 +22,3 @@ Sayfadaki gorseller, bu klasordeki zip dosyalarindan cikarilan oyunlardan uretil
 ## Alternatif Vitrin
 
 - `liveplay-cinematic-showcase/`: eski surumden bagimsiz, sifirdan tasarlanmis yeni sinematik vitrin
-- `index-classic.html`: onceki ana sayfanin korunmus klasik surumu
